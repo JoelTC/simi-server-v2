@@ -1,0 +1,25 @@
+<div *ngIf="load" class="center-content" style="height: 100% !important; width: 100% !important;">
+    <img src="assets/loading/loading.gif" style="width: 100px;">
+</div>
+<div *ngIf="!load"
+class="simi-bg-header mt-5 pt-3" style=" display: flex; align-items: center; font-weight: lighter;">
+    <span>
+        <i class="mdi mdi-account-multiple ml-2 f-15 "></i>
+        Mi perfil
+        <i class="mdi mdi-chevron-right" style="font-size: 20px;"></i>
+
+        <span style="font-size: 15px;">
+            <i class="mdi mdi-book-information-variant f-15"></i>
+            Información Académica</span>
+    </span>
+</div>
+<div *ngIf="!load">
+    <div class="row m-0">
+        <div class="col-lg-6 col-md-6 m-0 p-0">
+           <app-informacion-personal [user]="user"></app-informacion-personal>
+        </div>
+        <div class="col-lg-6 col-md-6 m-0 p-0">
+            <app-informacion-alumno [user]="user"></app-informacion-alumno>
+        </div>
+    </div>
+</div>

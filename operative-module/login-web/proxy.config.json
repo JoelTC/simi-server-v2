@@ -1,0 +1,11 @@
+{
+    "/simi/login/*": {
+      "target": "http://localhost:9091/",
+      "secure": false,
+      "logLevel": "debug",
+      "changeOrigin": true,
+      "pathRewrite": {
+        "^/simi/login": ""
+      }
+    }
+  }

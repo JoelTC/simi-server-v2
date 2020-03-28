@@ -1,0 +1,347 @@
+
+      <div class="simi-header">
+  
+        <button class="btn simi-btn-primary ml-2 mr-1" (click)="crear()">
+            <i [ngClass]="'mdi-plus-box-multiple-outline' " class="mdi f-16"></i> Crear Estudiante
+        </button>
+        <button class="btn simi-btn-silver ml-1 mr-1" (click)="cancelar()">
+            <i class="mdi mdi-close-circle f-16"></i> Cancelar
+    
+        </button>
+    </div>
+
+    
+
+    <div *ngIf="load" class="div-loading my-5"><img class="loading" src="{{loading}}" /></div>
+   
+        <br>
+        <h5 class="modal-title ml-3" style=" color: #317bbc;">Datos Personales y Académicos </h5>
+        
+        <hr>
+        <!-- [formGroup]="estudianteForm" -->
+        <form [formGroup]="estudianteForm" >
+        <div class="row ml-2  mr-2">
+            <div class="col-md-4">
+                <div class="form-group row">
+                    <label class="col-sm-12 col-form-label text-sm-left" style=" font-size: 110%;">      Nombre</label>
+                    <div class="col-sm-12">
+                        <input formControlName="nombreEst"  [(ngModel)]="estudiante.nombre" type="text" class="form-control"  placeholder="Ingrese su Nombre">
+                        <div class="alert-danger" *ngIf="nombreEst.invalid && (nombreEst.dirty || nombreEst.touched || enviado)">
+                            <div class="container-error-message" *ngIf="nombreEst.errors.required">
+                            Ingrese el  nombre
+                            </div>
+                            <div class="container-error-message" *ngIf="tamNom > 50">
+                            Debe tener como máximo 50 caracteres
+                            </div>
+                            <div class="container-error-message"
+                            *ngIf="(nombreEst.dirty || nombreEst.touched) && nombreEst.invalid && nombreEst.errors.pattern">
+                            El nombre debe solo debe contener letras
+                            </div>
+                        </div> 
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+            <div class="form-group row ">
+                <label class="col-sm-12 col-form-label text-sm-left" style=" font-size: 110%;">     Apellido Paterno</label>
+                <div class="col-sm-12">
+                    <input formControlName="apellidoPat"  name="apellidoPat" [(ngModel)]="estudiante.apellidoPat" type="text" class="form-control" placeholder="Ingrese su  Apellido Paterno">
+                    <div class="alert-danger" *ngIf="apellidoPat.invalid && (apellidoPat.dirty || apellidoPat.touched || enviado)">
+                        <div class="container-error-message" *ngIf="apellidoPat.errors.required">
+                        Ingrese el  apellido Paterno
+                        </div>
+                        <div class="container-error-message" *ngIf="tamApellidoPat > 50">
+                        Debe tener como máximo 50 caracteres
+                        </div>
+                        <div class="container-error-message"
+                        *ngIf="(apellidoPat.dirty || apellidoPat.touched) && apellidoPat.invalid && apellidoPat.errors.pattern">
+                        El apellido Paterno solo debe contener letras
+                        </div>
+                    </div> 
+                </div>
+            </div>
+        </div>
+            <div class="col-md-4">
+            <div class="form-group row">
+                <label class="col-sm-12 col-form-label text-sm-left" style=" font-size: 110%;"> Apellido Materno</label>
+                <div class="col-sm-12">
+                    <input formControlName="apellidoMat"  name="apellidoMat" [(ngModel)]="estudiante.apellidoMat" type="text" class="form-control" placeholder="Ingrese su  Apellido Materno" >
+                    <div class="alert-danger" *ngIf="apellidoMat.invalid && (apellidoMat.dirty || apellidoMat.touched || enviado)">
+                        <div class="container-error-message" *ngIf="apellidoMat.errors.required">
+                        Ingrese el  apellido Materno
+                        </div>
+                        <div class="container-error-message" *ngIf="tamApellidoMat > 50">
+                        Debe tener como máximo 50 caracteres
+                        </div>
+                        <div class="container-error-message"
+                        *ngIf="(apellidoMat.dirty || apellidoMat.touched) && apellidoMat.invalid && apellidoMat.errors.pattern">
+                        El apellido Materno solo debe contener letras
+                        </div>
+                    </div> 
+                </div>
+            </div>
+        </div>
+    </div>
+   <div class="row ml-2  mr-2">
+        <div class="col-md-3">
+            <div class="form-group row">
+                <label class="col-sm-12 col-form-label text-sm-left" style=" font-size: 110%;">  DNI</label>
+                <div class="col-sm-12">
+                    <input formControlName="dniEst" [(ngModel)]="estudiante.dni" type="number" class="form-control" placeholder="Ingrese su DNI">
+                    <div class="alert-danger" *ngIf="dniEst.invalid && (dniEst.dirty || dniEst.touched || enviado)">
+                        <div class="container-error-message" *ngIf="dniEst.errors.required">
+                        Ingrese el DNI
+                        </div>
+                        <div class="container-error-message" *ngIf="dniEst.errors.min">
+                          Debe tener 8 caracteres
+                        </div>
+                        <div class="container-error-message" *ngIf="dniEst.errors.max">
+                           Debe tener 8 caracteres
+                          </div>
+                       
+                      </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+        <div class="form-group row">
+            <label class="col-sm-12 col-form-label text-sm-left" style=" font-size: 110%;">   Género</label>
+            <div class="col-sm-12">
+                <select formControlName="formGenero"  class="form-control form-control-sm" [(ngModel)]="selectedTypeIdGenero">
+                    <option [ngValue]=-1>Seleccione un Género</option>
+                    <option [ngValue]=0>Femenino</option>
+                    <option [ngValue]=1>Masculino</option>
+                </select>   
+               
+                <div class="container-error-message  alert-danger" *ngIf="(selectedTypeIdGenero ==-1 ) && ( enviado|| formGenero.touched)">
+                    Debe seleccionar un Genero
+                    </div>  
+               </div>
+        </div>
+    </div>
+        <div class="col-md-3">
+            <div class="form-group row ">
+                <label class="col-sm-12 col-form-label text-sm-left" style=" font-size: 110%;">
+                    Edad</label>
+                <div class="col-sm-12">
+                    <input formControlName="edad"  name="edad" [(ngModel)]="estudiante.edad" type="number" class="form-control"  placeholder="Ingrese su  Edad">
+                    <div class="alert-danger" *ngIf="edad.invalid && (edad.dirty || edad.touched || enviado)">
+                        <div class="container-error-message" *ngIf="edad.errors.required">
+                         Ingrese la edad
+                        </div>
+                        <div class="container-error-message" *ngIf="edad.errors.min">
+                          Debe ser mínimo 8
+                        </div>
+                        <div class="container-error-message" *ngIf="edad.errors.max">
+                            Debe ser máximo 100
+                          </div>
+                       
+                      </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group row">
+                <label class="col-sm-12 col-form-label text-sm-left" style=" font-size: 110%;">
+                    F. Nacimiento</label>
+                <div class="col-sm-12">
+                    <input formControlName="fechaNacimiento"  [(ngModel)]="estudiante.fechaNacimiento" type="date" max="1900-01-31" max="2010-01-31" class="form-control" placeholder="Ingrese su  F. Nacimiento" >
+                    <div class="alert-danger" *ngIf="fechaNacimiento.invalid && (edad.dirty || edad.touched || enviado)">
+                        
+                        <div class="container-error-message" >
+                         Ingrese la Fecha de Nacimiento
+                        </div>
+                       
+                       
+                      </div>
+                </div> 
+            </div>
+        </div> 
+</div>
+
+<div class="row ml-2  mr-2">
+    <div class="col-md-3">
+        <div class="form-group row">
+            <label class="col-sm-12 col-form-label text-sm-left" style=" font-size: 110%;">
+                Dirección</label>
+            <div class="col-sm-12">
+                <input formControlName="address" name="address" [(ngModel)]="estudiante.address" type="text" class="form-control"  placeholder="Ingrese su Dirección">
+                <div class="alert-danger" *ngIf="address.invalid && (address.dirty || address.touched )">
+                            
+                    <div class="container-error-message" *ngIf="tamAdreess > 128">
+                      Debe tener como máximo 128 caracteres
+                    </div>
+                    <div class="container-error-message" *ngIf="address.errors.minlength">
+                        Debe tener como mínimo 5 caracteres
+                      </div>
+                   </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+    <div class="form-group row">
+        <label class="col-sm-12 col-form-label text-sm-left" style=" font-size: 110%;">
+            Celular</label>
+        <div class="col-sm-12">
+            <input formControlName="phone"  name="phone" [(ngModel)]="estudiante.phone" type="number" class="form-control"  placeholder="Ingrese su Celular" >
+            <div class="alert-danger" *ngIf="phone.invalid && (phone.dirty || phone.touched || enviado)">
+                <div class="container-error-message" *ngIf="phone.errors.required">
+                Ingrese el  N° de Celular
+                </div>
+                <div class="container-error-message" *ngIf="phone.errors.min">
+                  Debe tener 9 caracteres
+                </div>
+                <div class="container-error-message" *ngIf="phone.errors.max">
+                    Debe tener 9 caracteres
+                  </div>
+               
+              </div>
+        </div>
+    </div>
+</div>
+
+    <div class="col-md-3">
+        <div class="form-group row ">
+            <label class="col-sm-12 col-form-label text-sm-left" style=" font-size: 110%;">
+                Nacionalidad</label>
+            <div class="col-sm-12">
+                <input name="nacionalidad"   formControlName="nacionalidad"  [(ngModel)]="estudiante.nacionalidad" type="text" class="form-control" placeholder="Ingrese su Nacionalidad" >
+                <div class="alert-danger" *ngIf="nacionalidad.invalid && (nacionalidad.dirty || nacionalidad.touched || enviado)">
+                  
+                    <div class="container-error-message" *ngIf="nacionalidad.errors.minlength">
+                      Debe tener como mínimo 3 caracteres
+                    </div>
+                    <div class="container-error-message" *ngIf="tamNacionalidad > 60">
+                      Debe tener como máximo 60 caracteres
+                    </div>
+                    <div class="container-error-message"
+                    *ngIf="(nacionalidad.dirty || nacionalidad.touched) && nacionalidad.invalid && nacionalidad.errors.pattern">
+                    La nacionalidad solo debe contener letras
+                    </div>
+               </div>
+           
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="form-group row">
+            <label class="col-sm-12 col-form-label text-sm-left" style=" font-size: 110%;">
+                Universidad de Estudios</label>
+            <div class="col-sm-12">
+                <input  formControlName="university" name="university" [(ngModel)]="estudiante.university" type="text" class="form-control"  placeholder="Ingrese su Universidad de Estudios">
+                <div class="alert-danger" *ngIf="university.invalid && (university.dirty || university.touched || enviado)">
+                  
+                    <div class="container-error-message" *ngIf="university.errors.minlength">
+                      Debe tener como mínimo 3 caracteres
+                    </div>
+                    <div class="container-error-message" *ngIf="tamUniversity > 128">
+                      Debe tener como máximo 128 caracteres
+                    </div>
+                    <div class="container-error-message"
+                    *ngIf="(university.dirty || university.touched) && university.invalid && university.errors.pattern">
+                    La Universidad solo debe contener letras
+                    </div>
+               </div>
+           
+            </div>
+        </div>
+    </div>
+   
+</div> 
+<br>
+<h5 class="modal-title ml-3" style=" color: #317bbc;">Datos de Estudiante </h5>
+        <hr>
+<div class="row ml-2  mr-2">
+
+    <div class="col-md-6">
+    <div class="form-group row">
+        <label class="col-sm-12 col-form-label text-sm-left" style=" font-size: 110%;">
+         Rol</label>
+        <div class="col-sm-12">
+            <select formControlName="formRoles"   class="form-control form-control-sm" [(ngModel)]="selectedTypeIRol">
+                <option [ngValue]=0 >Rol de Usuario</option>
+                <option [ngValue]=1 >Estudiante</option>
+            </select>
+            <div class="container-error-message alert-danger" *ngIf="selectedTypeIRol ==0 && (enviado|| formRoles.touched)">
+                Debe seleccionar un Rol
+            </div>
+        </div>
+    </div>
+</div>
+ 
+    <div class="col-md-6">
+    <div class="form-group row">
+        <label class="col-sm-12 col-form-label text-sm-left" style=" font-size: 110%;">
+            Tipo de Estudiante </label>
+        <div class="col-sm-12">
+             <select formControlName="formTipoEstudiante"  class="form-control form-control-sm" [(ngModel)]="selectedTypeIdTipoEstudiante">
+                <option [ngValue]="0">Seleccionar el Tipo de Estudiante</option>
+                <option [ngValue]="tipo.idTipoEstudiante" *ngFor="let tipo of tipos">{{tipo.nomTipoEstudiante}}
+                </option>
+            </select>
+
+            <div class="container-error-message alert-danger" *ngIf="selectedTypeIdTipoEstudiante ==0 && (enviado|| formTipoEstudiante.touched)">
+                Debe seleccionar el Tipo de Estudiante 
+            </div>
+        </div>
+    </div>
+</div> 
+
+</div>
+
+<br>
+<h5 class="modal-title ml-3" style=" color: #317bbc;">Datos de Usuario </h5>
+<hr>
+
+<div class="row ml-2  mr-2">
+    <div class="col-md-6">
+        <div class="form-group row">
+            <label class="col-sm-12 col-form-label text-sm-left" style=" font-size: 110%;">
+                <i class="mdi mdi-emailf-16"></i> Email</label>
+            <div class="col-sm-12">
+                <input  formControlName="email" name="email" [(ngModel)]="estudiante.email" type="email" class="form-control"  placeholder="email@unmsm.edu.pe">
+                <div class="alert-danger" *ngIf="email.invalid && (email.dirty || email.touched || enviado)">
+                    <div class="container-error-message" *ngIf="email.errors.required">
+                    Ingrese el email
+                    </div>
+                    <div class="container-error-message" *ngIf="tamEmail > 150">
+                    Debe tener como máximo 150 caracteres
+                    </div>
+                    
+                    <div class="container-error-message"
+                        *ngIf="(email.dirty || email.touched) && email.invalid && email.errors.pattern">
+                        Formato de email no válido, ingrese nombre@unmsm.edu.pe
+                </div>
+          </div> 
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group row">
+            <label class="col-sm-12 col-form-label text-sm-left" style=" font-size: 110%;">
+                <i class="mdi mdi-key f-16"></i> Contraseña</label>
+            <div class="col-sm-12">
+                <input  formControlName="contrasenia"  name="contrasenia" [(ngModel)]="estudiante.contrasenia" type="password" class="form-control"  placeholder="Ingrese su contraseña">
+                <div class="alert-danger" *ngIf="contrasenia.invalid && (contrasenia.dirty || contrasenia.touched  || enviado)">
+                    <div class="container-error-message" *ngIf="contrasenia.errors.required">
+                        Ingrese la contraseña
+                        </div>      
+                    <div class="container-error-message" *ngIf="contrasenia.errors.minlength">
+                        Debe tener como mínimo 6 caracteres
+                      </div>
+                      <div class="container-error-message" *ngIf="tamContrasenia > 20">
+                        Debe tener como máximo 20 caracteres
+                      </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+   
+</div> 
+</form>
+           
+           
+<br><br><br><br><br>
+
+
