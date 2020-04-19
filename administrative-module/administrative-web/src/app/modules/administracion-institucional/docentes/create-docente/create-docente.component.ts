@@ -24,8 +24,8 @@ export class CreateDocenteComponent implements OnInit {
   docente: DocenteUP;
   
   public idiomas : Idioma[];
-  public tamNom : 0; public tamApellidoPat : 0;  public tamApellidoMat : 0; public tamAdreess : 0;public tamNacionalidad : 0;
-  public tamUniversity : 0;public tamContrasenia : 0;public tamEmail : 0;  public tamFechaNacimiento: 0;
+  public tamNom : 0;  public tamDesc :0 ; public tamApellidoPat : 0;  public tamApellidoMat : 0; public tamAdreess : 0;
+  public tamUniversity : 0;public tamContrasenia : 0;public tamEmail : 0;  public tamFechaNacimiento: 0; public tamNacionalidad : 0;
   public docenteForm: FormGroup;
   public enviado : boolean;
   constructor(private router: Router   ,  private serviceIdiomas: IdiomaService, private docenteUPService: DocenteUPService )  {
@@ -56,6 +56,7 @@ export class CreateDocenteComponent implements OnInit {
   get email() { if(this.docenteForm.get('email').value)   this.tamEmail =this.docenteForm.get('email').value.length;  return this.docenteForm.get('email');  }
   get contrasenia() { if(this.docenteForm.get('contrasenia').value)   this.tamContrasenia =this.docenteForm.get('contrasenia').value.length;  return this.docenteForm.get('contrasenia');  }
   get fechaNacimiento() { if(this.docenteForm.get('fechaNacimiento').value)   this.tamFechaNacimiento =this.docenteForm.get('fechaNacimiento').value.length;  return this.docenteForm.get('fechaNacimiento');  }
+  get descripcion() { if(this.docenteForm.get('descripcion').value)   this.tamDesc =this.docenteForm.get('descripcion').value.length;  return this.docenteForm.get('descripcion');  }
 
   private FormatEmailPattern: any =  /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@unmsm.edu.pe*$/;
   private OnlyTextPattern: any = /^[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+$/;
@@ -74,8 +75,10 @@ export class CreateDocenteComponent implements OnInit {
       formRol: new FormControl('', [Validators.required, Validators.min(1)] ),
       formDepartamemto: new FormControl('', [Validators.required, Validators.min(1)] ),
       email: new FormControl('', [Validators.required,Validators.maxLength(150) ,Validators.pattern(this.FormatEmailPattern) ]),
-      contrasenia:  new FormControl('', [Validators.required,Validators.maxLength(20), Validators.minLength(6)]),
-      fechaNacimiento: new FormControl('', )
+      contrasenia:  new FormControl('', [Validators.required,Validators.maxLength(40), Validators.minLength(6)]),
+      fechaNacimiento: new FormControl('', ) ,
+      descripcion: new FormControl('', [Validators.maxLength(250) ])
+
     });
   }
   

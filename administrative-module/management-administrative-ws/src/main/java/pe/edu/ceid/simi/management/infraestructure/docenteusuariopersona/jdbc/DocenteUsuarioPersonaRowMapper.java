@@ -42,7 +42,7 @@ public class DocenteUsuarioPersonaRowMapper implements RowMapper {
 			String nacionalidad = Tratamiento.tratarString("NACIONALIDAD", row);
 			String address = Tratamiento.tratarString("ADDRESS", row);
 			String phone = Tratamiento.tratarString("PHONE", row);
-			
+			String descripcion = Tratamiento.tratarString("DESCRIPCION", row);
 			int idUsuario = Integer.parseInt(row.get("ID_USUARIO").toString());
 			String email =row.get("EMAIL").toString();
 			String contrasenia =row.get("PASSWORD").toString();
@@ -59,7 +59,7 @@ public class DocenteUsuarioPersonaRowMapper implements RowMapper {
 
 			DocenteUsuarioPersona d = new DocenteUsuarioPersona(idPersona, nombre, apellidoPat, apellidoMat, dni,
 					genero, edad, fechaAltaP, fechaModP, university, fechaNacimiento, lugarNacDist, lugarNacProv,
-					lugarNacDep, nacionalidad, address, phone, idUsuario, email, contrasenia, idRol, nomRol, estado,
+					lugarNacDep, nacionalidad, address, phone, descripcion, idUsuario, email, contrasenia, idRol, nomRol, estado,
 					fechaAltaU, fechaBajaU, fechaModU, idUsuarioMod, codDocente, departamento);
 			
 			docentes.add(d);

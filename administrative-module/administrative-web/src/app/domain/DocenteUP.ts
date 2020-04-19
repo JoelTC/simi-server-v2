@@ -16,7 +16,7 @@ export class DocenteUP {
 
     address: string; 
     phone: string;
-    
+    descripcion : string ;
     nacionalidad: string; 
 
 

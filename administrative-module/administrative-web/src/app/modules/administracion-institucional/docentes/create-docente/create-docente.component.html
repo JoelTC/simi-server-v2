@@ -20,6 +20,7 @@
         <hr>
 
         <form [formGroup]="docenteForm" >
+        
         <div class="row ml-2  mr-2">
             <div class="col-md-4">
                 <div class="form-group row">
@@ -82,8 +83,11 @@
             </div>
         </div>
     </div>
-    <div class="row ml-2  mr-2">
-        <div class="col-md-3">
+
+
+<div class ="row ml-2  mr-2">
+    <div class="col-md-6 row">
+         <div class="col-md-6">
             <div class="form-group row">
                 <label class="col-sm-12 col-form-label text-sm-left" style=" font-size: 110%;">  DNI</label>
                 <div class="col-sm-12">
@@ -103,7 +107,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-6">
         <div class="form-group row">
             <label class="col-sm-12 col-form-label text-sm-left" style=" font-size: 110%;">
                 Género</label>
@@ -120,45 +124,63 @@
                </div>
         </div>
     </div>
-        <div class="col-md-3">
-            <div class="form-group row ">
-                <label class="col-sm-12 col-form-label text-sm-left" style=" font-size: 110%;">
-                    Edad</label>
-                <div class="col-sm-12">
-                    <input formControlName="edad"  name="edad" [(ngModel)]="docente.edad" type="number" class="form-control"  placeholder="Ingrese su  Edad">
-                    <div class="alert-danger" *ngIf="edad.invalid && (edad.dirty || edad.touched || enviado)">
-                        <div class="container-error-message" *ngIf="edad.errors.required">
-                         Ingrese la edad
-                        </div>
-                        <div class="container-error-message" *ngIf="edad.errors.min">
-                          Debe ser mínimo 8
-                        </div>
-                        <div class="container-error-message" *ngIf="edad.errors.max">
-                            Debe ser máximo 100
-                          </div>
-                       
+    <div class="col-md-6">
+        <div class="form-group row ">
+            <label class="col-sm-12 col-form-label text-sm-left" style=" font-size: 110%;">
+                Edad</label>
+            <div class="col-sm-12">
+                <input formControlName="edad"  name="edad" [(ngModel)]="docente.edad" type="number" class="form-control"  placeholder="Ingrese su  Edad">
+                <div class="alert-danger" *ngIf="edad.invalid && (edad.dirty || edad.touched || enviado)">
+                    <div class="container-error-message" *ngIf="edad.errors.required">
+                     Ingrese la edad
+                    </div>
+                    <div class="container-error-message" *ngIf="edad.errors.min">
+                      Debe ser mínimo 8
+                    </div>
+                    <div class="container-error-message" *ngIf="edad.errors.max">
+                        Debe ser máximo 100
                       </div>
+                   
+                  </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group row">
+            <label class="col-sm-12 col-form-label text-sm-left" style=" font-size: 110%;">
+                F. Nacimiento</label>
+            <div class="col-sm-12">
+                <input formControlName="fechaNacimiento"  [(ngModel)]="docente.fechaNacimiento" type="date" max="1900-01-31" max="2010-01-31" class="form-control" placeholder="Ingrese su  F. Nacimiento" >
+                <div class="alert-danger" *ngIf="fechaNacimiento.invalid && (fechaNacimiento.dirty || fechaNacimiento.touched || enviado)">
+                    
+                    <div class="container-error-message" >
+                     Ingrese la Fecha de Nacimiento
+                    </div>
+                   
+                   
+                  </div>
+            </div> 
+        </div>
+    </div>
+    </div>
+  
+    <div class="col-md-6 ">
+            <div class="form-group row">
+                <label class="col-sm-12 col-form-label text-sm-left" style=" font-size: 110%;"> Descripcion</label>
+                <div class="col-sm-12">
+                    <textarea id="w3mission" rows="5" cols="50" formControlName="descripcion"  [(ngModel)]="docente.descripcion"  class="form-control"  placeholder="Ingrese la Descripción del Docente">
+                    </textarea>
+                    <div class="alert-danger" *ngIf="descripcion.invalid && (descripcion.dirty || descripcion.touched || enviado)">
+                        <div class="container-error-message" *ngIf="tamDesc > 250">
+                        Debe tener como máximo 250 caracteres
+                        </div>
+                    </div> 
                 </div>
             </div>
-        </div>
-        <div class="col-md-3">
-            <div class="form-group row">
-                <label class="col-sm-12 col-form-label text-sm-left" style=" font-size: 110%;">
-                    F. Nacimiento</label>
-                <div class="col-sm-12">
-                    <input formControlName="fechaNacimiento"  [(ngModel)]="docente.fechaNacimiento" type="date" max="1900-01-31" max="2010-01-31" class="form-control" placeholder="Ingrese su  F. Nacimiento" >
-                    <div class="alert-danger" *ngIf="fechaNacimiento.invalid && (fechaNacimiento.dirty || fechaNacimiento.touched || enviado)">
-                        
-                        <div class="container-error-message" >
-                         Ingrese la Fecha de Nacimiento
-                        </div>
-                       
-                       
-                      </div>
-                </div> 
-            </div>
-        </div>
+    </div>
 </div>
+
+
 
 <div class="row ml-2  mr-2">
     <div class="col-md-3">
@@ -260,8 +282,8 @@
          Rol</label>
         <div class="col-sm-12">
             <select formControlName="formRol"   class="form-control form-control-sm" [(ngModel)]="selectedTypeIRol">
-                <option [ngValue]="0">Rol de Usuario</option>
-                <option [ngValue]="2">Docente</option>
+                <option [ngValue]=0>Rol de Usuario</option>
+                <option [ngValue]=2>Docente</option>
             </select>
             <div class="container-error-message alert-danger" *ngIf="selectedTypeIRol ==0 && (enviado|| formRol.touched)">
                 Debe seleccionar un Rol
@@ -277,7 +299,7 @@
         <div class="col-sm-12">
             <select  formControlName="formDepartamemto"  class="form-control form-control-sm" [(ngModel)]="selectedTypeIdDepartamento">
                 <option [ngValue]='0'>Departamento de pertenencia </option> 
-                <option [ngValue]="idioma.idIdioma" *ngFor="let idioma of idiomas">{{idioma.nomIdioma}}
+                <option [ngValue]="idioma.nomIdioma" *ngFor="let idioma of idiomas">{{idioma.nomIdioma}}
                 </option>
             </select>
             <div class="container-error-message alert-danger" *ngIf="selectedTypeIdDepartamento =='0' && (enviado|| formDepartamemto.touched)">

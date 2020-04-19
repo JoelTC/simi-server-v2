@@ -21,6 +21,7 @@ public class DocenteUsuarioPersona {
 	private String nacionalidad;
 	private String address;
 	private String phone;
+	private String descripcion;
 	
 	private int idUsuario;
 	private String email;
@@ -41,7 +42,7 @@ public class DocenteUsuarioPersona {
 	public DocenteUsuarioPersona(int idPersona, String nombre, String apellidoPat, String apellidoMat, String dni,
 			int genero, int edad, Date fechaAltaP, Date fechaModP, String university, String fechaNacimiento,
 			String lugarNacDist, String lugarNacProv, String lugarNacDep, String nacionalidad, String address,
-			String phone, int idUsuario, String email, String contrasenia, int idRol, String nomRol, int estado,
+			String phone,  String descripcion ,int idUsuario, String email, String contrasenia, int idRol, String nomRol, int estado,
 			Date fechaAltaU, Date fechaBajaU, Date fechaModU, int idUsuarioMod, String codDocente,
 			String departamento) {
 		super();
@@ -62,6 +63,7 @@ public class DocenteUsuarioPersona {
 		this.nacionalidad = nacionalidad;
 		this.address = address;
 		this.phone = phone;
+		this.descripcion = descripcion;
 		this.idUsuario = idUsuario;
 		this.email = email;
 		this.contrasenia = contrasenia;
@@ -74,6 +76,14 @@ public class DocenteUsuarioPersona {
 		this.idUsuarioMod = idUsuarioMod;
 		this.codDocente = codDocente;
 		this.departamento = departamento;
+	}
+
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
 	}
 
 	public int getIdPersona() {

@@ -12,7 +12,7 @@ declare var $;
   styleUrls: ['./sedes.component.css']
 })
 export class SedesComponent implements OnInit {
-  @ViewChild('dataTable') table ;
+  // @ViewChild('dataTable') table ;
   dtOptions: any;
   dataTable : any;
   // dtOption: any = {};
@@ -40,8 +40,8 @@ export class SedesComponent implements OnInit {
 
   ngOnInit(): void {
     this.obtenerSedes();
- this.dataTable = $(this.table.nativeElement);
- this.dataTable.dataTable();
+//  this.dataTable = $(this.table.nativeElement);
+//  this.dataTable.dataTable();
 /*
         this.dtOptions = {"columnDefs": [{ 
           "targets": [ 0 ],
@@ -56,7 +56,6 @@ export class SedesComponent implements OnInit {
               this.dataTable.DataTable(this.dtOptions);*/
  }
 
- 
   nuevaSede() {
     
     this.router.navigate(['administracionInstitucional/sedes/crear']).then();

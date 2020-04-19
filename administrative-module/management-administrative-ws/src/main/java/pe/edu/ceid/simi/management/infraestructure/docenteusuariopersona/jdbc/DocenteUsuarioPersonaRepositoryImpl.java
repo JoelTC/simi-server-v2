@@ -23,12 +23,13 @@ public class DocenteUsuarioPersonaRepositoryImpl implements DocenteUsuarioPerson
 	@Override
 	public String crearDocenteUsuarioPersona(DocenteUsuarioPersona docenteUsuarioPersona) {
 		try {
-			String insertQuery = "{CALL SP_DOC_USU_PER_INSERT(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)}";
+			String insertQuery = "{CALL SP_DOC_USU_PER_INSERT(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)}";
 			int success = this.jdbcTemplate.update(insertQuery, docenteUsuarioPersona.getNombre(), docenteUsuarioPersona.getApellidoPat(),
 					docenteUsuarioPersona.getApellidoMat(), docenteUsuarioPersona.getDni(), docenteUsuarioPersona.getGenero(),
 					docenteUsuarioPersona.getEdad(), docenteUsuarioPersona.getUniversity(), docenteUsuarioPersona.getLugarNacDist(),
 					docenteUsuarioPersona.getLugarNacProv(), docenteUsuarioPersona.getLugarNacDep(), docenteUsuarioPersona.getNacionalidad(),
-					docenteUsuarioPersona.getAddress(), docenteUsuarioPersona.getPhone(), docenteUsuarioPersona.getFechaNacimiento(),
+					docenteUsuarioPersona.getAddress(), docenteUsuarioPersona.getPhone(), docenteUsuarioPersona.getDescripcion(),
+					docenteUsuarioPersona.getFechaNacimiento(),
 					docenteUsuarioPersona.getEmail(), docenteUsuarioPersona.getContrasenia(), docenteUsuarioPersona.getEstado(),
 					docenteUsuarioPersona.getDepartamento());
 			
@@ -53,12 +54,13 @@ public class DocenteUsuarioPersonaRepositoryImpl implements DocenteUsuarioPerson
 	@Override
 	public String editDocenteUsuarioPersona(DocenteUsuarioPersona docenteUsuarioPersona, String id) {
 		try {
-			String insertQuery = "{CALL SP_DOC_USU_PER_UPDATE(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)}";
+			String insertQuery = "{CALL SP_DOC_USU_PER_UPDATE(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)}";
 			int success = this.jdbcTemplate.update(insertQuery, id, docenteUsuarioPersona.getNombre(),
 					docenteUsuarioPersona.getApellidoPat(), docenteUsuarioPersona.getApellidoMat(), docenteUsuarioPersona.getDni(),
 					docenteUsuarioPersona.getGenero(), docenteUsuarioPersona.getEdad(), docenteUsuarioPersona.getUniversity(),
 					docenteUsuarioPersona.getLugarNacDist(), docenteUsuarioPersona.getLugarNacProv(), docenteUsuarioPersona.getLugarNacDep(),
 					docenteUsuarioPersona.getNacionalidad(), docenteUsuarioPersona.getAddress(), docenteUsuarioPersona.getPhone(),
+					docenteUsuarioPersona.getDescripcion(),
 					docenteUsuarioPersona.getFechaNacimiento(), docenteUsuarioPersona.getEmail(), docenteUsuarioPersona.getContrasenia(),
 					docenteUsuarioPersona.getEstado(), docenteUsuarioPersona.getDepartamento());
 			
@@ -84,11 +86,11 @@ public class DocenteUsuarioPersonaRepositoryImpl implements DocenteUsuarioPerson
 	@Override
 	public List<DocenteUsuarioPersona> getDocenteUsuarioPersona() {
 		String query = "SELECT *, us.FECHA_ALTA FECHA_ALTA_USU, us.FECHA_BAJA FECHA_BAJA_USU, us.FECHA_MOD FECHA_MOD_USU,\r\n" + 
-				"	pe.FECHA_ALTA FECHA_ALTA_PER, pe.FECHA_MOD FECHA_MOD_PER\r\n" + 
+				"	pe.FECHA_ALTA FECHA_ALTA_PER, pe.FECHA_MOD FECHA_MOD_PER,  pe.DESCRIPCION \r\n" + 
 				"FROM tmdocente AS doc\r\n" + 
-				"	INNER JOIN tmusuario AS us ON us.ID_USUARIO = doc.FK_ID_USUARIO\r\n" + 
-				"		INNER JOIN tmpersona AS pe ON pe.ID_PERSONA = us.FK_ID_PERSONA\r\n" + 
-				"		INNER JOIN tmrol AS ro ON ro.ID_ROL = us.FK_ID_ROL";
+				"INNER JOIN tmusuario AS us ON us.ID_USUARIO = doc.FK_ID_USUARIO\r\n" + 
+				"INNER JOIN tmpersona AS pe ON pe.ID_PERSONA = us.FK_ID_PERSONA\r\n" + 
+				"INNER JOIN tmrol AS ro ON ro.ID_ROL = us.FK_ID_ROL";
 		List<Map<String, Object>> rows = this.jdbcTemplate.queryForList(query);
 		List<DocenteUsuarioPersona> docUsuPer = row.mapRowDocenteUsuarioPersona(rows);
 		return docUsuPer;

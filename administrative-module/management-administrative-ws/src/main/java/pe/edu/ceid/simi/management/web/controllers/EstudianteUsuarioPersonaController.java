@@ -51,8 +51,7 @@ public class EstudianteUsuarioPersonaController {
 //	}
 	
 	@PutMapping(path = {"/actualizarEstudianteUsuarioPersona/{id}"})
-	public String actualizarEstudianteUsuarioPersonaById(@RequestBody EstudianteUsuarioPersona estUsuPer,
-			@PathVariable String id) {
+	public String actualizarEstudianteUsuarioPersonaById(@RequestBody EstudianteUsuarioPersona estUsuPer, @PathVariable String id) {
 		return this.service.editEstudianteUsuarioPersona(estUsuPer, id);
 	}
 	
