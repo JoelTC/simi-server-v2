@@ -28,8 +28,8 @@ import { MatriculaVoucherDialogComponent } from './dialogs/matricula/matricula-v
 registerLocaleData(localePe, 'es');
 const appRoutes: Routes = [
   {
-    path: 'login',
-    loadChildren: () => import('./modules/login/login.module').then(m => m.LoginModule)
+ path: 'login',
+  loadChildren: () => import('./modules/login/login.module').then(m => m.LoginModule)
   },
   {
     path: 'home',

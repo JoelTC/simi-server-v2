@@ -3,13 +3,13 @@
 	{
 		"version": "1.0.0",
 		"database": {
-			"ip" : "165.227.89.167",
+			"ip" : "localhost",
 			"port": "3306",
 			"db" : "dbsimi",
 			"type": "mysql",
-			"username": "dev-duv",
-			"password": "4x5ekREtTps2subelUdaf/46YcGQPWtj",
-			"driver": "com.mysql.jdbc.Driver"
+			"username": "similocal",
+			"password": "similocal",
+			"driver": "com.mysql.cj.jdbc.Driver"
 		}
 	}
 }

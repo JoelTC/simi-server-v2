@@ -1,7 +1,83 @@
 package pe.edu.ceid.simi.operative.domain.alumno.model;
 
 public class AlumnoDTO {
-	private int idPersona;
+	private String codigo;
+	private String dni;
+	private String nombre;
+	private String idioma;
+	private String periodo;
+	private String mes;
+	private String fecha;
+	
+	public String getCodigo() {
+		return codigo;
+	}
+
+	public void setCodigo(String codigo) {
+		this.codigo = codigo;
+	}
+
+	public String getDni() {
+		return dni;
+	}
+
+	public void setDni(String dni) {
+		this.dni = dni;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public String getIdioma() {
+		return idioma;
+	}
+
+	public void setIdioma(String idioma) {
+		this.idioma = idioma;
+	}
+
+	public String getPeriodo() {
+		return periodo;
+	}
+
+	public void setPeriodo(String periodo) {
+		this.periodo = periodo;
+	}
+
+	public String getMes() {
+		return mes;
+	}
+
+	public void setMes(String mes) {
+		this.mes = mes;
+	}
+
+	public String getFecha() {
+		return fecha;
+	}
+
+	public void setFecha(String fecha) {
+		this.fecha = fecha;
+	}
+
+	public AlumnoDTO(String codigo, String dni, String nombre, String idioma, String periodo, String mes,
+			String fecha) {
+		super();
+		this.codigo = codigo;
+		this.dni = dni;
+		this.nombre = nombre;
+		this.idioma = idioma;
+		this.periodo = periodo;
+		this.mes = mes;
+		this.fecha = fecha;
+	}
+	
+	/*private int idPersona;
 	private String nomPersona;
 	private String apPaterno;
 	private String apMaterno;
@@ -156,6 +232,6 @@ public class AlumnoDTO {
 
 	public void setNomTipo(String nomTipo) {
 		this.nomTipo = nomTipo;
-	}
+	}*/
 	
 }

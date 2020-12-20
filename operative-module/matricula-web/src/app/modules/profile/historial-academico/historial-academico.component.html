@@ -39,7 +39,7 @@
         </div>
         <div *ngFor="let notas of nota">
             <div class="text-center" style="color: #323232;">
-                <label class="simi-section-label-rose">Periodo Académico {{notas.nomPeriodo}}</label>
+                <b><label class="simi-section-label-green"> Periodo Académico {{notas.nomPeriodo}}</label> </b>
             </div>
 
             <div class="table-responsive">
@@ -56,8 +56,17 @@
                             <td>1</td>
                             <td>{{notas.hora}}</td>
                             <td>{{notas.nomIdioma}} {{notas.nomNivel}} {{notas.ciclo}}</td>
-                            <td><label class="btn simi-btn-primary">{{notas.promedio}}</label></td>
-                            <td><label class="btn simi-btn-green-s btn-block">Aprobado</label></td>
+                            <td>
+                                <button class="btn simi-btn-primary" [ngClass]="notas.promedio >= '14' ? 'simi-btn-primary' : 'simi-btn-red'">
+                                    {{notas.promedio}}
+                                </button>
+                            </td>
+                            <!-- <td><label class="btn simi-btn-green-s btn-block">Aprobado</label></td> -->
+                            <td>
+                                <button class="btn" [ngClass]="notas.estado === 'APROBADO' ? 'simi-btn-primary' : 'simi-btn-silver'">
+                                    {{notas.estado}}
+                                </button>
+                            </td>
                         </tr>
                         <!-- <tr>
                         <td>2</td>

@@ -41,7 +41,7 @@ public class AuthenticationRepositoryImpl implements AuthenticationRepository {
 		if (auth != null) {
 			StringBuilder sql = new StringBuilder();
 			sql.append("SELECT ID_USUARIO, FK_ID_ROL, EMAIL, PASSWORD FROM TMUSUARIO ");
-			sql.append("WHERE EMAIL = ? AND ID_USUARIO = ? AND PASSWORD = md5(?) ");
+			sql.append("WHERE EMAIL = ? AND ID_USUARIO = ? AND PASSWORD = ? ");
 			List<Map<String, Object>> rows = jdbcTemplate.queryForList(sql.toString(),
 					new Object[] { email, auth.getId(), password });
 			Authentication authentication = rows.isEmpty() ? null : row.mapRowAuthentication(rows.get(0));
