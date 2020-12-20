@@ -24,7 +24,6 @@ public class NotaRowMapper implements RowMapper {
 
 	@SuppressWarnings("rawtypes")
 	public NotaDTO mapRow(LinkedCaseInsensitiveMap row) {
-
 		int idNota = Integer.parseInt(row.get("ID_NOTA").toString());
 		int idMatricula = Integer.parseInt(row.get("FK_ID_MATRICULA").toString());
 		String codEstudiante = row.get("FK_COD_ESTUDIANTE_CI").toString();
@@ -34,9 +33,10 @@ public class NotaRowMapper implements RowMapper {
 		int ciclo = Integer.parseInt(row.get("CICLO").toString());
 		String hora = row.get("HORA").toString();
 		int promedio = Integer.parseInt(row.get("PROMEDIO").toString());
+		String estado = row.get("ESTADO").toString();
 
 		NotaDTO i = new NotaDTO(idNota, idMatricula, codEstudiante, nomPeriodo, nomIdioma, nomNivel,
-				ciclo, hora, promedio);
+				ciclo, hora, promedio, estado);
 		return i;
 	}
 	

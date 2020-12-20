@@ -8,6 +8,7 @@ import javax.swing.tree.RowMapper;
 import javax.swing.tree.TreePath;
 
 import org.springframework.stereotype.Component;
+import org.springframework.util.LinkedCaseInsensitiveMap;
 
 import pe.edu.ceid.simi.operative.domain.alumno.model.AlumnoDTO;
 
@@ -19,7 +20,7 @@ public class AlumnoRowMapper implements RowMapper{
 		return null;
 	}
 	
-	public List<AlumnoDTO> mapRowAlumno(List<Map<String, Object>> rows){
+	/*public List<AlumnoDTO> mapRowAlumno(List<Map<String, Object>> rows){
 		List<AlumnoDTO> alumnos = new ArrayList<AlumnoDTO>();
 	for(Map<String, Object> row: rows) {
 		int idPersona = Integer.parseInt(row.get("ID_PERSONA").toString());
@@ -44,6 +45,18 @@ public class AlumnoRowMapper implements RowMapper{
 		alumnos.add(i);
 	}
 	return alumnos;
-}
+}*/
+	@SuppressWarnings("rawtypes")
+	public AlumnoDTO mapRowAlumno(LinkedCaseInsensitiveMap row) {
+		String codigo = row.get("CODIGO").toString();
+		String dni = row.get("DNI").toString();
+		String nombre = row.get("NOMBRE").toString();
+		String idioma = row.get("IDIOMA").toString();
+		String periodo = row.get("NOM_PERIODO").toString();
+		String mes = row.get("MES").toString();
+		String fecha = row.get("FECHA_MATRICULA").toString();
+		AlumnoDTO i = new AlumnoDTO(codigo, dni, nombre, idioma, periodo, mes, fecha);
+		return i;
+	}
 
 }

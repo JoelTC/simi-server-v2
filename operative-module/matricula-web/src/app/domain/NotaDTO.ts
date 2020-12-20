@@ -8,4 +8,5 @@ export class NotaDTO {
     ciclo: number;
     hora: string;
     promedio: number;
+    estado: string;
 }
