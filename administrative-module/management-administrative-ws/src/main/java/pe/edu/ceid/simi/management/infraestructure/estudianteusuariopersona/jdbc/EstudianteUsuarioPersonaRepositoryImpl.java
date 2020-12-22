@@ -22,13 +22,24 @@ public class EstudianteUsuarioPersonaRepositoryImpl implements EstudianteUsuario
 	@Override
 	public String crearEstudianteUsuarioPersona(EstudianteUsuarioPersona estudianteUsuarioPersona) {
 		try {
-			String insertQuery = "{CALL SP_EST_USU_PER_INSERT(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)}";
-			int success = this.jdbcTemplate.update(insertQuery, estudianteUsuarioPersona.getNombre(), estudianteUsuarioPersona.getApellidoPat(),
-					estudianteUsuarioPersona.getApellidoMat(), estudianteUsuarioPersona.getDni(), estudianteUsuarioPersona.getGenero(),
-					estudianteUsuarioPersona.getEdad(), estudianteUsuarioPersona.getUniversity(), estudianteUsuarioPersona.getLugarNacDist(),
-					estudianteUsuarioPersona.getLugarNacProv(), estudianteUsuarioPersona.getLugarNacDep(), estudianteUsuarioPersona.getNacionalidad(),
-					estudianteUsuarioPersona.getAddress(), estudianteUsuarioPersona.getPhone(), estudianteUsuarioPersona.getFechaNacimiento(),
-					estudianteUsuarioPersona.getEmail(), estudianteUsuarioPersona.getContrasenia(), estudianteUsuarioPersona.getEstado(),
+			String insertQuery = "{CALL SP_EST_USU_PER_INSERT(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)}";
+			int success = this.jdbcTemplate.update(insertQuery, 
+					estudianteUsuarioPersona.getNombre(), 
+					estudianteUsuarioPersona.getApellidoPat(),
+					estudianteUsuarioPersona.getApellidoMat(), 
+					estudianteUsuarioPersona.getDni(), 
+					estudianteUsuarioPersona.getGenero(),
+					estudianteUsuarioPersona.getEdad(), 
+					estudianteUsuarioPersona.getUniversity(),
+					estudianteUsuarioPersona.getFechaNacimiento(), 
+					estudianteUsuarioPersona.getNacionalidad(),
+					estudianteUsuarioPersona.getLugarNacDep(), 
+					estudianteUsuarioPersona.getLugarNacProv(), 
+					estudianteUsuarioPersona.getLugarNacDist(),
+					estudianteUsuarioPersona.getAddress(), 
+					estudianteUsuarioPersona.getPhone(), 
+					estudianteUsuarioPersona.getEmail(), 
+					estudianteUsuarioPersona.getContrasenia(), 
 					estudianteUsuarioPersona.getIdTipoEstudiante());
 			
 			if (success >= 0) {
@@ -54,13 +65,25 @@ public class EstudianteUsuarioPersonaRepositoryImpl implements EstudianteUsuario
 	public String editEstudianteUsuarioPersona(EstudianteUsuarioPersona estudianteUsuarioPersona, String id) {
 		try {
 			String insertQuery = "{CALL SP_EST_USU_PER_UPDATE(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)}";
-			int success = this.jdbcTemplate.update(insertQuery, id, estudianteUsuarioPersona.getNombre(),
-					estudianteUsuarioPersona.getApellidoPat(), estudianteUsuarioPersona.getApellidoMat(), estudianteUsuarioPersona.getDni(),
-					estudianteUsuarioPersona.getGenero(), estudianteUsuarioPersona.getEdad(), estudianteUsuarioPersona.getUniversity(),
-					estudianteUsuarioPersona.getLugarNacDist(), estudianteUsuarioPersona.getLugarNacProv(), estudianteUsuarioPersona.getLugarNacDep(),
-					estudianteUsuarioPersona.getNacionalidad(), estudianteUsuarioPersona.getAddress(), estudianteUsuarioPersona.getPhone(),
-					estudianteUsuarioPersona.getFechaNacimiento(), estudianteUsuarioPersona.getEmail(), estudianteUsuarioPersona.getContrasenia(),
-					estudianteUsuarioPersona.getEstado(), estudianteUsuarioPersona.getIdTipoEstudiante());
+			int success = this.jdbcTemplate.update(insertQuery, 
+					id, 
+					estudianteUsuarioPersona.getNombre(),
+					estudianteUsuarioPersona.getApellidoPat(), 
+					estudianteUsuarioPersona.getApellidoMat(), 
+					estudianteUsuarioPersona.getDni(),
+					estudianteUsuarioPersona.getGenero(), 
+					estudianteUsuarioPersona.getEdad(), 
+					estudianteUsuarioPersona.getFechaNacimiento(), 
+					estudianteUsuarioPersona.getUniversity(),
+					estudianteUsuarioPersona.getLugarNacDist(), 
+					estudianteUsuarioPersona.getLugarNacProv(), 
+					estudianteUsuarioPersona.getLugarNacDep(),
+					estudianteUsuarioPersona.getNacionalidad(), 
+					estudianteUsuarioPersona.getAddress(), 
+					estudianteUsuarioPersona.getPhone(),
+					estudianteUsuarioPersona.getEmail(), 
+					estudianteUsuarioPersona.getContrasenia(),
+					estudianteUsuarioPersona.getIdTipoEstudiante());
 			
 			if (success >= 0) {
 				return "true";

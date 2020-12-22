@@ -146,35 +146,35 @@ DELIMITER ;
 DROP procedure IF EXISTS `SP_EST_USU_PER_INSERT`;
 DELIMITER $$
 CREATE PROCEDURE `SP_EST_USU_PER_INSERT`(
-	nombre VARCHAR(50),
+nombre VARCHAR(50),
     apellidoPat VARCHAR(50),
     apellidoMat VARCHAR(50),
     dni INT(11),
     genero INT(1),
     edad INT(11),
     university VARCHAR(128),
-    lugarNacDist VARCHAR(128),
-    lugarNacProv VARCHAR(128),
-    lugarNacDep VARCHAR(128),
+    fecha_nacimiento VARCHAR(10),
     nacionalidad VARCHAR(128),
+    lugarNacDep VARCHAR(128),
+    lugarNacProv VARCHAR(128),
+    lugarNacDist VARCHAR(128),
     address VARCHAR(128),
     phone VARCHAR(128),
     email VARCHAR(150),
     passwd VARCHAR(50),
-    estado INT(11),
     idTipoEstudiante INT(11)
 )
 BEGIN
     DECLARE codPer INT;
     DECLARE codUsu INT;
     DECLARE codEst VARCHAR(10);
-    INSERT INTO tmpersona (NOMBRE, APELLIDO_PAT, APELLIDO_MAT, DNI, GENERO, EDAD, university,
+    INSERT INTO tmpersona (NOMBRE, APELLIDO_PAT, APELLIDO_MAT, DNI, GENERO, EDAD, FECHA_NACIMIENTO, university,
 		LUGAR_NAC_DIST, LUGAR_NAC_PROV, LUGAR_NAC_DEP, NACIONALIDAD, ADDRESS, PHONE)
-		VALUE (nombre, apellidoPat, apellidoMat, dni, genero, edad, university,
+		VALUE (nombre, apellidoPat, apellidoMat, dni, genero, edad, fecha_nacimiento, university,
         lugarNacDist, lugarNacProv, lugarNacDep, nacionalidad, address, phone);
 	SET codPer := (SELECT MAX(ID_PERSONA) FROM tmpersona);
     INSERT INTO tmusuario (FK_ID_PERSONA, EMAIL, PASSWORD, FK_ID_ROL, ESTADO)
-		VALUE (codPer, email, passwd, 1, estado);
+		VALUE (codPer, email, passwd, 1, 1);
 	SET codUsu := (SELECT MAX(ID_USUARIO) FROM tmusuario);
     SET codEst := (SELECT CONCAT("EST", LPAD((SUBSTRING(MAX(COD_ESTUDIANTE_CI), 4, 5) + 1), 5, 0)) FROM tmestudiante);
     INSERT INTO tmestudiante (COD_ESTUDIANTE_CI, FK_ID_USUARIO, FK_ID_TIPO_ESTUDIANTE)
@@ -188,13 +188,14 @@ DELIMITER ;
 DROP procedure IF EXISTS `SP_EST_USU_PER_UPDATE`;
 DELIMITER $$
 CREATE PROCEDURE `SP_EST_USU_PER_UPDATE`(
-codEstudiante VARCHAR(11),
+	codEstudiante VARCHAR(11),
 	nombre VARCHAR(50),
     apellidoPat VARCHAR(50),
     apellidoMat VARCHAR(50),
     dni INT(11),
     genero INT(1),
     edad INT(11),
+    fecha_nacimiento VARCHAR(10),
     university VARCHAR(128),
     lugarNacDist VARCHAR(128),
     lugarNacProv VARCHAR(128),
@@ -204,7 +205,6 @@ codEstudiante VARCHAR(11),
     phone VARCHAR(128),
     email VARCHAR(150),
     passwd VARCHAR(50),
-    estado INT(11),
     idTipoEstudiante INT(11)
 )
 BEGIN
@@ -214,11 +214,11 @@ BEGIN
     UPDATE tmestudiante SET FK_ID_TIPO_ESTUDIANTE = idTipoEstudiante WHERE COD_ESTUDIANTE_CI = codEstudiante;
     SET codUsu := (SELECT FK_ID_USUARIO from tmestudiante WHERE COD_ESTUDIANTE_CI = codEstudiante);
     
-    UPDATE tmusuario SET EMAIL = email, PASSWORD = passwd, ESTADO = estado WHERE ID_USUARIO = codUsu;
+    UPDATE tmusuario SET EMAIL = email, PASSWORD = passwd WHERE ID_USUARIO = codUsu;
     SET codPer := (SELECT FK_ID_PERSONA from tmusuario WHERE ID_USUARIO = codUsu);
     
     UPDATE tmpersona SET NOMBRE = nombre, APELLIDO_PAT = apellidoPat, APELLIDO_MAT = apellidoMat,
-		DNI = dni, GENERO = genero, EDAD = edad, university = university,
+		DNI = dni, GENERO = genero, EDAD = edad, FECHA_NACIMIENTO = fecha_nacimiento, university = university,
 		LUGAR_NAC_DIST = lugarNacDist, LUGAR_NAC_PROV = lugarNacProv, LUGAR_NAC_DEP = lugarNacDep,
         NACIONALIDAD = nacionalidad, ADDRESS = address, PHONE = phone WHERE ID_PERSONA = codPer;
 END$$

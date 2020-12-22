@@ -32,7 +32,7 @@ export class EditarDocenteComponent implements OnInit {
   constructor(private router: Router, private activedRouter: ActivatedRoute,
     private docenteUPService: DocenteUPService, private serviceIdioma: IdiomaService
   ) {
-    this.selectedTypeIdGenero = -1;
+    this.selectedTypeIdGenero = 0;
     this.selectedTypeIRol = 0;
     this.selectedTypeIdDepartamento = '0';
 
@@ -74,7 +74,7 @@ export class EditarDocenteComponent implements OnInit {
       apellidoPat: new FormControl('', [Validators.required, Validators.maxLength(50), Validators.pattern(this.OnlyTextPattern)]),
       apellidoMat: new FormControl('', [Validators.required, Validators.maxLength(50), Validators.pattern(this.OnlyTextPattern)]),
       dni: new FormControl('', [Validators.required, Validators.min(10000000), Validators.max(99999999)]),
-      formGenero: new FormControl('', [Validators.required, Validators.min(0), Validators.max(1)]),
+      formGenero: new FormControl('', [Validators.required, Validators.min(1), Validators.max(2)]),
       edad: new FormControl('', [Validators.min(8), Validators.max(100)]),
       fechaNacimiento: new FormControl('',),
       university: new FormControl('', [Validators.maxLength(128), Validators.minLength(3)]),

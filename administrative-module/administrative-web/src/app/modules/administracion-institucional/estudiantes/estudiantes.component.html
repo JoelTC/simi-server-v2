@@ -16,8 +16,7 @@
     <div class=" form-group row right ml-3">
         <label class="col-sm-1  col-form-label">Filtro</label>
         <div class="col-sm-8">
-            <input type="text" class="col-sm-10" placeholder="Ingrese su filtro de Búsqueda"
-                [(ngModel)]="busquedaTexto" />
+            <input type="text" class="col-sm-10" placeholder="Ingrese su filtro de Búsqueda" [(ngModel)]="busquedaTexto" />
 
         </div>
     </div>
@@ -66,8 +65,7 @@
                                 {{estudiante.dni}} </span> </div>
                     </td>
                     <td>
-                        <div class="center-body"> <span class=" font-weight-bold badge badge-mark border-blue mr-1 "
-                                style="font-size:110%;"> {{estudiante.codEstudiante}} </span> </div>
+                        <div class="center-body"> <span class=" font-weight-bold badge badge-mark border-blue mr-1 " style="font-size:110%;"> {{estudiante.codEstudiante}} </span> </div>
                     </td>
                     <td>
                         <div class="center-body"> <span class=" border-blue mr-1 " style="font-size:110%;">
@@ -75,14 +73,13 @@
                         </div>
                     </td>
                     <td>
-                        <div class="center-body"> <span class="  border-blue mr-1 text-muted"
-                                style="font-size:110%; font-style: italic;">
+                        <div class="center-body"> <span class="  border-blue mr-1 text-muted" style="font-size:110%; font-style: italic;">
                                 <i class="mdi mdi-email-outline  "
                                     style="color : black ; font-size: 20px; display: inline-block !important;"></i>
                                 {{estudiante.email}} </span> </div>
                     </td>
                     <td>
-                        <div class="center-body " *ngIf="estudiante.genero==0">Femenino </div>
+                        <div class="center-body " *ngIf="estudiante.genero==2">Femenino </div>
                         <div class="center-body" *ngIf="estudiante.genero==1">Masculino </div>
 
 
@@ -95,28 +92,21 @@
                     <div class="center-body"> <span class = " border-blue mr-1 " style="font-size:110%;"> {{estudiante.departamento}} </span> </div>
                  </td> -->
                     <td>
-                        <div class="center-body"> <span class=" border-blue mr-1 " style="font-size:110%;"
-                                *ngIf="estudiante.idTipoEstudiante==1"> Alumno Pregrado </span> </div>
-                        <div class="center-body"> <span class=" border-blue mr-1 " style="font-size:110%;"
-                                *ngIf="estudiante.idTipoEstudiante==2"> Alumno Posgrado </span> </div>
-                        <div class="center-body"> <span class=" border-blue mr-1 " style="font-size:110%;"
-                                *ngIf="estudiante.idTipoEstudiante==3"> Docente </span> </div>
-                        <div class="center-body"> <span class=" border-blue mr-1 " style="font-size:110%;"
-                                *ngIf="estudiante.idTipoEstudiante==4"> Trabajador </span> </div>
-                        <div class="center-body"> <span class=" border-blue mr-1 " style="font-size:110%;"
-                                *ngIf="estudiante.idTipoEstudiante==5"> {{estudiante.nomTipoEstudiante}} </span> </div>
+                        <div class="center-body"> <span class=" border-blue mr-1 " style="font-size:110%;" *ngIf="estudiante.idTipoEstudiante==1"> Alumno Pregrado </span> </div>
+                        <div class="center-body"> <span class=" border-blue mr-1 " style="font-size:110%;" *ngIf="estudiante.idTipoEstudiante==2"> Alumno Posgrado </span> </div>
+                        <div class="center-body"> <span class=" border-blue mr-1 " style="font-size:110%;" *ngIf="estudiante.idTipoEstudiante==3"> Docente </span> </div>
+                        <div class="center-body"> <span class=" border-blue mr-1 " style="font-size:110%;" *ngIf="estudiante.idTipoEstudiante==4"> Trabajador </span> </div>
+                        <div class="center-body"> <span class=" border-blue mr-1 " style="font-size:110%;" *ngIf="estudiante.idTipoEstudiante==5"> {{estudiante.nomTipoEstudiante}} </span> </div>
 
                     </td>
                     <td>
                         <div class="row">
-                            <button class="btn-edit mt-1 ml-3 " style="background: #27c68f ;"
-                                (click)="editar(estudiante.codEstudiante)">
+                            <button class="btn-edit mt-1 ml-3 " style="background: #27c68f ;" (click)="editar(estudiante.codEstudiante)">
                                 <i class="mdi mdi-border-color"
                                     style=" color : white ; font-size: 20px; display: inline-block !important;"></i>
                             </button>
 
-                            <button type="button" class="btn-edit mt-1 ml-2" style="background: #dd2f18 ;"
-                                (click)="eliminarDocente(estudiante.codEstudiante)">
+                            <button type="button" class="btn-edit mt-1 ml-2" style="background: #dd2f18 ;" (click)="eliminarDocente(estudiante.codEstudiante)">
                                 <i class="mdi mdi-delete  "
                                     style="color : white ; font-size: 20px; display: inline-block !important;"></i>
                             </button>

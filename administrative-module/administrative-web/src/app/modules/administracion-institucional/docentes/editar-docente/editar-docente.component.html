@@ -107,12 +107,12 @@
                     Género</label>
                 <div class="col-sm-12">
                     <select formControlName="formGenero" class="form-control form-control-sm" [(ngModel)]="selectedTypeIdGenero">
-                        <option [ngValue]=-1>Seleccione un Género</option>
-                        <option [ngValue]=0>Femenino</option>
+                        <option [ngValue]=0>Seleccione un Género</option>
                         <option [ngValue]=1>Masculino</option>
+                        <option [ngValue]=2>Femenino</option>
                     </select>
 
-                    <div class="container-error-message  alert-danger" *ngIf="(selectedTypeIdGenero ==-1 ) && ( enviado|| formGenero.touched)">
+                    <div class="container-error-message  alert-danger" *ngIf="(selectedTypeIdGenero ==0 ) && ( enviado|| formGenero.touched)">
                         Debe seleccionar un Genero
                     </div>
                 </div>

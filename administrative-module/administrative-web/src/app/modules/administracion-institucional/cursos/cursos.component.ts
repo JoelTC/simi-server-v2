@@ -59,6 +59,7 @@ export class CursosComponent implements OnInit {
   obtenerCursos(id: number) {
     this.cursoService.getCursosByIdioma(id).subscribe(data => {
       this.cursosDTO = data;
+      console.log(data);
       this.getIdiomas();
     });
   }

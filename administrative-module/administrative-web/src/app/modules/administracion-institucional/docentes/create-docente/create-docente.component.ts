@@ -24,11 +24,24 @@ export class CreateDocenteComponent implements OnInit {
   docente: DocenteUP;
 
   public idiomas: Idioma[];
-  public tamNom: 0; public tamApellidoPat: 0; public tamApellidoMat: 0; public tamFechaNacimiento: 0; public tamNacionalidad: 0; public tamlugarNacDep: 0; public tamlugarNacProv: 0; public tamlugarNacDist: 0; public tamAdreess: 0; public tamUniversity: 0; public tamDesc: 0; public tamContrasenia: 0; public tamEmail: 0;
+  public tamNom: 0; 
+  public tamApellidoPat: 0; 
+  public tamApellidoMat: 0; 
+  public tamFechaNacimiento: 0; 
+  public tamNacionalidad: 0; 
+  public tamlugarNacDep: 0; 
+  public tamlugarNacProv: 0; 
+  public tamlugarNacDist: 0; 
+  public tamAdreess: 0; 
+  public tamUniversity: 0; 
+  public tamDesc: 0; 
+  public tamContrasenia: 0; 
+  public tamEmail: 0;
   public docenteForm: FormGroup;
   public enviado: boolean;
+  
   constructor(private router: Router, private serviceIdiomas: IdiomaService, private docenteUPService: DocenteUPService) {
-    this.selectedTypeIdGenero = -1;
+    this.selectedTypeIdGenero = 0;
     this.selectedTypeIRol = 0;
     this.selectedTypeIdDepartamento = '0';
     this.load = true;
@@ -70,7 +83,7 @@ export class CreateDocenteComponent implements OnInit {
       apellidoPat: new FormControl('', [Validators.required, Validators.maxLength(50), Validators.pattern(this.OnlyTextPattern)]),
       apellidoMat: new FormControl('', [Validators.required, Validators.maxLength(50), Validators.pattern(this.OnlyTextPattern)]),
       dni: new FormControl('', [Validators.required, Validators.min(10000000), Validators.max(99999999)]),
-      formGenero: new FormControl('', [Validators.required, Validators.min(0), Validators.max(1)]),
+      formGenero: new FormControl('', [Validators.required, Validators.min(1), Validators.max(2)]),
       edad: new FormControl('', [Validators.min(8), Validators.max(100)]),
       fechaNacimiento: new FormControl('',),
       university: new FormControl('', [Validators.maxLength(128), Validators.minLength(3)]),
