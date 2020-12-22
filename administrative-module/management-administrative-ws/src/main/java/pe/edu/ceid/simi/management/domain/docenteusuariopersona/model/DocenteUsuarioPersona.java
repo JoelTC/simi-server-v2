@@ -21,7 +21,6 @@ public class DocenteUsuarioPersona {
 	private String nacionalidad;
 	private String address;
 	private String phone;
-	private String descripcion;
 	
 	private int idUsuario;
 	private String email;
@@ -36,6 +35,7 @@ public class DocenteUsuarioPersona {
 	
 	private String codDocente;
 	private String departamento;
+	private String descripcion;
 
 	public DocenteUsuarioPersona() {}
 

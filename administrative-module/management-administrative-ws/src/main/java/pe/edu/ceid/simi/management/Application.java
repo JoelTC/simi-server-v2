@@ -18,4 +18,4 @@ public class Application extends SpringBootServletInitializer {
 		 System.out.println("Entro al Modulo Administrativo");
 	}
 
-}//P
+}

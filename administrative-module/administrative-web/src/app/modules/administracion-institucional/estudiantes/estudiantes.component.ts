@@ -43,7 +43,7 @@ obtenerEstudiantes() {
   this.estudianteUPService.getEstudianteUP().subscribe(data => {
     this.load = false;
     this.estudiantesUP = data;
-
+    console.log(data);
   }
   )
 }
