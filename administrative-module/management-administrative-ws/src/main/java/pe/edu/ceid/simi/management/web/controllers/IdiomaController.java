@@ -17,7 +17,7 @@ import pe.edu.ceid.simi.management.domain.idioma.model.Idioma;
 
 import java.util.List;
 
-@CrossOrigin(origins = "localhost:4200")
+//@CrossOrigin(origins = "localhost:4200")
 @RestController
 @RequestMapping({"/api/v1/programacionCurso/idioma"})
 public class IdiomaController {

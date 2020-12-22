@@ -11,24 +11,24 @@ import Swal from 'sweetalert2';
   styleUrls: ['./docentes.component.css']
 })
 export class DocentesComponent implements OnInit {
-  public  pageActual : number ;
+  public pageActual: number;
   estado: boolean;
-  prueba : string;
+  prueba: string;
   public id: number;
   busquedaTexto: any;
-   docentesUP: DocenteUP[];
-   docenteUP: DocenteUP;
+  docentesUP: DocenteUP[];
+  docenteUP: DocenteUP;
   // estadomesa : EstadoMesa;
   load: boolean;
   loading: string;
-   constructor(private router: Router  ,private docenteUPService: DocenteUPService , 
+  constructor(private router: Router, private docenteUPService: DocenteUPService,
     // private serviceestadomesa: EstadoMesasService 
-    ) {
-     this.estado = false;
-      this.docenteUP = new DocenteUP();
-      this.pageActual = 1;
-      this.load = true;
-    }
+  ) {
+    this.estado = false;
+    this.docenteUP = new DocenteUP();
+    this.pageActual = 1;
+    this.load = true;
+  }
 
 
   // constructor() { }
@@ -42,30 +42,30 @@ export class DocentesComponent implements OnInit {
     this.docenteUPService.getDocentesUP().subscribe(data => {
       this.load = false;
       this.docentesUP = data;
-
+      console.log(data);
     }
     )
   }
 
   nuevoDocente() {
-    
+
     this.router.navigate(['administracionInstitucional/docentes/crear']).then();
   }
   // editarAlumno(id: number) 
-  editar(id: number) { 
+  editar(id: number) {
     // this.router.navigate(['administracionInstitucional/alumnos/nuevo/editar/' + id]);
     this.router.navigate(['administracionInstitucional/docentes/editar/' + id]).then();
   }
 
   public eliminarDocente(id: number) {
     console.log(id);
-    
+
     this.docenteUPService.getDocenteUPById(id).subscribe(o => {
       if (o !== null) {
-        this.docenteUP  = o; 
+        this.docenteUP = o;
         console.log(this.docentesUP);
         Swal.fire({
-          title: 'Estas seguro que desea eliminar al docente '+ this.docenteUP.nombre + ' ' + this.docenteUP.apellidoPat + ' '+this.docenteUP.apellidoMat +' ?',
+          title: 'Estas seguro que desea eliminar al docente ' + this.docenteUP.nombre + ' ' + this.docenteUP.apellidoPat + ' ' + this.docenteUP.apellidoMat + ' ?',
           // text: "S",
           icon: 'warning',
           showCancelButton: true,
@@ -77,7 +77,7 @@ export class DocentesComponent implements OnInit {
           if (result.value) {
             this.load = true;
             this.docenteUPService.deleteDocenteById(id).subscribe(data => {
-              
+
               if (data) {
                 this.load = false;
                 Swal.fire(
@@ -88,11 +88,11 @@ export class DocentesComponent implements OnInit {
                 this.obtenerDocentes();
                 Swal.fire(
                   'Docente Eliminado!',
-                    'El Docente se elimino correctamente.',
-                    'success'
-                  );
-        
-        
+                  'El Docente se elimino correctamente.',
+                  'success'
+                );
+
+
               } else {
                 this.load = false;
                 // this.obtenerIdiomas();
@@ -104,20 +104,20 @@ export class DocentesComponent implements OnInit {
                   error.error.text,
                   'error'
                 );
-               if (error) {
-                 this.load = false;
-                 // this.obtenerIdiomas();
-                
-               }
+                if (error) {
+                  this.load = false;
+                  // this.obtenerIdiomas();
+
+                }
               }
             });
-           
-          }
-          })
 
-         } else {  this.navigateList();    }
-   
-  } ) ;
+          }
+        })
+
+      } else { this.navigateList(); }
+
+    });
 
   }
   private navigateList() {

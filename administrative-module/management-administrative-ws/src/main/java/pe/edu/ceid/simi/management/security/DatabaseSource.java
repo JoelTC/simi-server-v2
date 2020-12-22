@@ -28,7 +28,7 @@ public class DatabaseSource {
 		String driver = (String) properties.get("driver");
 		String url = "jdbc:"+ (String) properties.get("type") + "://" + 
 				(String)properties.get("ip") + ":" + (String)properties.get("port") + "/" + 
-				(String)properties.get("db")+"?autoReconnect=true&useSSL=false";
+				(String)properties.get("db")+"?autoReconnect=true&useSSL=false&allowPublicKeyRetrieval=true&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
 		String username = (String)properties.get("username");
 		String pass = (String)properties.get("password");	
 		//String pass = encryp((String)properties.get("password"));	

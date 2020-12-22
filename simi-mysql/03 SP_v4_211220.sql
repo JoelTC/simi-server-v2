@@ -44,33 +44,34 @@ CREATE PROCEDURE `SP_DOC_USU_PER_INSERT`(
     dni INT(11),
     genero INT(1),
     edad INT(11),
-    university VARCHAR(128),
+    fecha_nacimiento VARCHAR(10),
+    nacionalidad VARCHAR(128),
     lugarNacDist VARCHAR(128),
     lugarNacProv VARCHAR(128),
     lugarNacDep VARCHAR(128),
-    nacionalidad VARCHAR(128),
     address VARCHAR(128),
+    university VARCHAR(128),
     phone VARCHAR(128),
     email VARCHAR(150),
     passwd VARCHAR(50),
-    estado INT(11),
-    departamento VARCHAR(50)
+    departamento VARCHAR(50),
+    descripcion VARCHAR(100)
 )
 BEGIN
     DECLARE codPer INT;
     DECLARE codUsu INT;
     DECLARE codDoc VARCHAR(10);
-    INSERT INTO tmpersona (NOMBRE, APELLIDO_PAT, APELLIDO_MAT, DNI, GENERO, EDAD, university,
+    INSERT INTO tmpersona (NOMBRE, APELLIDO_PAT, APELLIDO_MAT, DNI, GENERO, EDAD, university, FECHA_NACIMIENTO,
 		LUGAR_NAC_DIST, LUGAR_NAC_PROV, LUGAR_NAC_DEP, NACIONALIDAD, ADDRESS, PHONE)
-		VALUE (nombre, apellidoPat, apellidoMat, dni, genero, edad, university,
+		VALUE (nombre, apellidoPat, apellidoMat, dni, genero, edad, university, fecha_nacimiento,
         lugarNacDist, lugarNacProv, lugarNacDep, nacionalidad, address, phone);
 	SET codPer := (SELECT MAX(ID_PERSONA) FROM tmpersona);
     INSERT INTO tmusuario (FK_ID_PERSONA, EMAIL, PASSWORD, FK_ID_ROL, ESTADO)
-		VALUE (codPer, email, passwd, 2, estado);
+		VALUE (codPer, email, passwd, 2, 1);
 	SET codUsu := (SELECT MAX(ID_USUARIO) FROM tmusuario);
     SET codDoc := (SELECT CONCAT("DOC", LPAD((SUBSTRING(MAX(COD_DOCENTE_CI), 4, 5) + 1), 5, 0)) FROM tmdocente);
-    INSERT INTO tmdocente (COD_DOCENTE_CI, FK_ID_USUARIO, DEPARTAMENTO)
-		VALUE (codDoc, codUsu, departamento);
+    INSERT INTO tmdocente (COD_DOCENTE_CI, FK_ID_USUARIO, DEPARTAMENTO, DESCRIPCION)
+		VALUE (codDoc, codUsu, departamento, descripcion);
 END$$
 DELIMITER ;
 
@@ -80,39 +81,43 @@ DELIMITER ;
 DROP procedure IF EXISTS `SP_DOC_USU_PER_UPDATE`;
 DELIMITER $$
 CREATE PROCEDURE `SP_DOC_USU_PER_UPDATE`(
-codDocente VARCHAR(11),
+	codDocente VARCHAR(11),
 	nombre VARCHAR(50),
     apellidoPat VARCHAR(50),
     apellidoMat VARCHAR(50),
     dni INT(11),
     genero INT(1),
     edad INT(11),
-    university VARCHAR(128),
-    lugarNacDist VARCHAR(128),
-    lugarNacProv VARCHAR(128),
-    lugarNacDep VARCHAR(128),
+    fecha_nacimiento VARCHAR(10),
     nacionalidad VARCHAR(128),
+    lugarNacDep VARCHAR(128),
+    lugarNacProv VARCHAR(128),
+    lugarNacDist VARCHAR(128),
     address VARCHAR(128),
+    university VARCHAR(128),
     phone VARCHAR(128),
     email VARCHAR(150),
     passwd VARCHAR(50),
-    estado INT(11),
-    departamento VARCHAR(50)
+    departamento VARCHAR(50),
+    descripcion VARCHAR(100)
 )
 BEGIN
     DECLARE codPer INT;
     DECLARE codUsu INT;
     
-    UPDATE tmdocente SET DEPARTAMENTO = departamento WHERE COD_DOCENTE_CI = codDocente;
+    UPDATE tmdocente SET DEPARTAMENTO = departamento, DESCRIPCION = descripcion WHERE COD_DOCENTE_CI = codDocente;
+    
     SET codUsu := (SELECT FK_ID_USUARIO from tmdocente WHERE COD_DOCENTE_CI = codDocente);
     
-    UPDATE tmusuario SET EMAIL = email, PASSWORD = passwd, ESTADO = estado WHERE ID_USUARIO = codUsu;
+    UPDATE tmusuario SET EMAIL = email, PASSWORD = passwd WHERE ID_USUARIO = codUsu;
+    
     SET codPer := (SELECT FK_ID_PERSONA from tmusuario WHERE ID_USUARIO = codUsu);
     
     UPDATE tmpersona SET NOMBRE = nombre, APELLIDO_PAT = apellidoPat, APELLIDO_MAT = apellidoMat,
-		DNI = dni, GENERO = genero, EDAD = edad, university = university,
-		LUGAR_NAC_DIST = lugarNacDist, LUGAR_NAC_PROV = lugarNacProv, LUGAR_NAC_DEP = lugarNacDep,
-        NACIONALIDAD = nacionalidad, ADDRESS = address, PHONE = phone WHERE ID_PERSONA = codPer;
+		DNI = dni, GENERO = genero, EDAD = edad, FECHA_NACIMIENTO = fecha_nacimiento,
+        NACIONALIDAD = nacionalidad, LUGAR_NAC_DEP = lugarNacDep, LUGAR_NAC_PROV = lugarNacProv,  
+        LUGAR_NAC_DIST = lugarNacDist,  ADDRESS = address, university = university,  PHONE = phone 
+        WHERE ID_PERSONA = codPer;
 END$$
 DELIMITER ;
 
