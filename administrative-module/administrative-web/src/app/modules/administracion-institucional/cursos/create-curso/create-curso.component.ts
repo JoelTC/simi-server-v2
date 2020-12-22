@@ -22,33 +22,37 @@ export class CreateCursoComponent implements OnInit {
   public load: boolean;
   public loading: string;
 
-  public selectedTypeIdNivel : number;
-  public selectedTypeIdIdioma : number;
-  public niveles : Nivel[];
-  public idiomas : Idioma[];
+  public selectedTypeIdNivel: number;
+  public selectedTypeIdIdioma: number;
+  public niveles: Nivel[];
+  public idiomas: Idioma[];
   public title: string;
+  public libros: string;
 
   public cursoForm: FormGroup;
-  public enviado : boolean;
-  constructor(private router: Router , private serviceCurso: CursoService,
-    private serviceIdiomas: IdiomaService,  private serviceNivel: NivelService )   {
-      this.curso = new Curso();
+  public enviado: boolean;
+  constructor(private router: Router, private serviceCurso: CursoService,
+    private serviceIdiomas: IdiomaService, private serviceNivel: NivelService) {
+    this.curso = new Curso();
     this.selectedTypeIdNivel = 0;
-     this.selectedTypeIdIdioma = 0;
+    this.selectedTypeIdIdioma = 0;
     this.load = true;
     this.loading = Path.loading;
     this.cursoForm = this.createForm();
     this.enviado = false;
   }
 
-  get formIdioma() {     return this.cursoForm.get('formIdioma'); }
-  get formNivel() {     return this.cursoForm.get('formNivel'); }
-  get ciclo() {        return this.cursoForm.get('ciclo'); }
+  get formIdioma() { return this.cursoForm.get('formIdioma'); }
+  get formNivel() { return this.cursoForm.get('formNivel'); }
+  get ciclo() { return this.cursoForm.get('ciclo'); }
+  get libro() { return this.cursoForm.get('libro') };
+
   createForm() {
     return new FormGroup({
-      formIdioma: new FormControl('', [Validators.required ,Validators.min(1)    ]  ),
-      formNivel: new FormControl('',[ Validators.required ,Validators.min(1)  ] ),
-      ciclo: new FormControl('', [Validators.required,Validators.min(1) ,Validators.max(20)    ]),
+      formIdioma: new FormControl('', [Validators.required, Validators.min(1)]),
+      formNivel: new FormControl('', [Validators.required, Validators.min(1)]),
+      ciclo: new FormControl('', [Validators.required, Validators.min(1), Validators.max(20)]),
+      libro: new FormControl('', [Validators.maxLength(100), Validators.minLength(3)]),
     });
   }
 
@@ -69,69 +73,69 @@ export class CreateCursoComponent implements OnInit {
       this.load = false;
     });
   }
- crear(){
-  
-    this.enviado=true;
-console.log("selectedTypeIdNivel", this.selectedTypeIdNivel);
-console.log("selectedTypeIdIdioma",this.selectedTypeIdIdioma);
+  crear() {
+
+    this.enviado = true;
+    console.log("selectedTypeIdNivel", this.selectedTypeIdNivel);
+    console.log("selectedTypeIdIdioma", this.selectedTypeIdIdioma);
 
     if (this.cursoForm.valid) {
       console.log("entro no vacio");
       this.load = true;
       this.curso.idNivel = this.selectedTypeIdNivel;
       this.curso.idIdioma = this.selectedTypeIdIdioma;
-      
+
       console.log(this.curso);
       this.crearCurso();
     }
-    }
-    private crearCurso() {
-     
-      this.serviceCurso.crearCurso(this.curso)
-        .subscribe(data => {
-          console.log("data",data);
-          this.load = false;
-          if (data) {
-            Swal.fire(
-              'Registro Exitoso!',
-              'El curso se registro correctamente.',
-              'success'
-            );
-            this.navigateList();
-            this.setLocalStorageParamIdioma(this.curso.idIdioma.toString());
-
-          } else {
-            // this.empty = true;
-            // this.successText = 'El curso ya existe, ingrese otro.';
-          }
-        }, error => {
-            
-          Swal.fire(
-            'Advertencia!',
-            error.error.text,
-            'info'
-          );
-         if (error) {
-           this.load = false;
-           // this.obtenerIdiomas();
-          
-         }
-       });
-    }
-    setLocalStorageParamIdioma(title: string) {
-      this.title = title;
-      localStorage.setItem('parametro', this.title);
-    }
-
-    cancelar(){
-      this.navigateList();
-      this.load = false;
-    }
-    
-    private navigateList() {
-      this.router.navigate(['administracionInstitucional/cursos']).then();
-    }
-  
   }
+  private crearCurso() {
+
+    this.serviceCurso.crearCurso(this.curso)
+      .subscribe(data => {
+        console.log("data", data);
+        this.load = false;
+        if (data) {
+          Swal.fire(
+            'Registro Exitoso!',
+            'El curso se registro correctamente.',
+            'success'
+          );
+          this.navigateList();
+          this.setLocalStorageParamIdioma(this.curso.idIdioma.toString());
+
+        } else {
+          // this.empty = true;
+          // this.successText = 'El curso ya existe, ingrese otro.';
+        }
+      }, error => {
+
+        Swal.fire(
+          'Advertencia!',
+          error.error.text,
+          'info'
+        );
+        if (error) {
+          this.load = false;
+          // this.obtenerIdiomas();
+
+        }
+      });
+  }
+  setLocalStorageParamIdioma(title: string) {
+    this.title = title;
+    localStorage.setItem('parametro', this.title);
+  }
+
+  cancelar() {
+    this.navigateList();
+    this.load = false;
+  }
+
+  private navigateList() {
+    this.router.navigate(['administracionInstitucional/cursos']).then();
+  }
+
+}
 
 

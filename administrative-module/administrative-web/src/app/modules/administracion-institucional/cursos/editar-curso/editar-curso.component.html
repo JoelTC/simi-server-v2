@@ -1,6 +1,5 @@
-
 <div class="header-user-list mb-2">
-   
+
     <button class="btn simi-btn-primary ml-2 mr-1" (click)="guardar()">
         <i class="mdi mdi-plus-box-multiple-outline f-16"></i> Guardar
     </button>
@@ -17,72 +16,87 @@
 <div *ngIf="load" class="div-loading my-5"><img class="loading" src="{{loading}}" /></div>
 
 
-    <h5 class="modal-title ml-3" style=" color: #317bbc;">Formulario Edición de Curso </h5>
-        <hr>
+<h5 class="modal-title ml-3" style=" color: #317bbc;">Formulario Edición de Curso </h5>
+<hr>
 
-        <form [formGroup]="cursoForm">
-
-            <div class="row">
-                <div class="col-md-6">
-                <div class="form-group row mx-3">
-                    <label class="col-sm-12 col-form-label text-sm-left" style=" font-size: 110%;"> 
-                        <i class="mdi mdi-library-books f-16"></i>  Idioma</label>
-                        <div class="col-sm-10 ">
-                            <select formControlName="formIdioma"  class="form-control form-control-sm" [(ngModel)]="selectedTypeIdIdioma">
-                                <option [ngValue]="0">Seleccionar el Idioma</option>
-                                <option [ngValue]="idioma.idIdioma" *ngFor="let idioma of idiomas">{{idioma.nomIdioma}}
-                                </option>
-                            </select>
-                            <div class="container-error-message alert-danger" *ngIf="selectedTypeIdIdioma ==0 && (enviado|| formIdioma.touched)">
-                                Debe seleccionar un Idioma
-                            </div>
+<form [formGroup]="cursoForm">
+    <div class="row ml-2  mr-2">
+        <div class="col-md-6 row">
+            <div class="col-md-12">
+                <div class="form-group row">
+                    <label class="col-sm-12 col-form-label text-sm-left" style=" font-size: 110%;">
+                        <i class="mdi mdi-library-books f-16"></i> Idioma</label>
+                    <div class="col-sm-10 ">
+                        <select formControlName="formIdioma" class="form-control form-control-sm" [(ngModel)]="selectedTypeIdIdioma">
+                            <option [ngValue]="0">Seleccionar el Idioma</option>
+                            <option [ngValue]="idioma.idIdioma" *ngFor="let idioma of idiomas">{{idioma.nomIdioma}}
+                            </option>
+                        </select>
+                        <div class="container-error-message alert-danger" *ngIf="selectedTypeIdIdioma ==0 && (enviado|| formIdioma.touched)">
+                            Debe seleccionar un Idioma
                         </div>
-                </div>
-            </div>
-      
-                 <div class="col-md-6">
-    
-                    <div class="form-group row mx-3">
-                        <label class="col-sm-12 col-form-label text-sm-left" style=" font-size: 110%;"> 
-                            <i class="mdi mdi-rotate-right-variant f-16"></i>  Nivel</label>
-                            <div class="col-sm-10 ">
-                                <select  formControlName="formNivel" class="form-control form-control-sm" [(ngModel)]="selectedTypeIdNivel">
-                                    <option [ngValue]="0">Seleccionar el Nivel de Estudio</option>
-                                    <option [ngValue]="nivel.idNivel" *ngFor="let nivel of niveles">{{nivel.nomNivel}}
-                                    </option>
-                                </select>
-                                <div class="container-error-message alert-danger" *ngIf="selectedTypeIdNivel ==0 && (enviado|| formNivel.touched)">
-                                    Debe seleccionar un Nivel
-                                </div>
-                            </div>
                     </div>
                 </div>
-               
-              </div>
-    
-              <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group row mx-3">
-                        <label class="col-sm-12 col-form-label text-sm-left" style=" font-size: 110%;">
-                            <i class="mdi mdi-drawing-box f-16"></i> N° Ciclo</label>
-                        <div class="col-sm-6">
-                            <input formControlName="ciclo"  [(ngModel)]="curso.ciclo" type="number"  min="1" max="20" class="form-control"  placeholder="Ingrese el Ciclo">
-                            <div class="alert-danger" *ngIf="ciclo.invalid && (ciclo.dirty || ciclo.touched || enviado)">
-                                <div class="container-error-message" *ngIf="ciclo.errors.required">
-                                Ingrese el  N° de Ciclo
-                                </div>
-                                <div class="container-error-message" *ngIf="ciclo.errors.min">
-                                  Debe ser mínimo 1
-                                </div>
-                                <div class="container-error-message" *ngIf="ciclo.errors.max">
-                                    Debe ser máximo 20
-                                  </div>
-                               
-                              </div>
-                        </div>
-                      
-                    </div>
             </div>
-               
-              </div>
-            </form>
+
+            <div class="col-md-12">
+                <div class="form-group row">
+                    <label class="col-sm-12 col-form-label text-sm-left" style=" font-size: 110%;">
+                        <i class="mdi mdi-rotate-right-variant f-16"></i> Nivel</label>
+                    <div class="col-sm-10 ">
+                        <select formControlName="formNivel" class="form-control form-control-sm" [(ngModel)]="selectedTypeIdNivel">
+                            <option [ngValue]="0">Seleccionar el Nivel de Estudio</option>
+                            <option [ngValue]="nivel.idNivel" *ngFor="let nivel of niveles">{{nivel.nomNivel}}
+                            </option>
+                        </select>
+                        <div class="container-error-message alert-danger" *ngIf="selectedTypeIdNivel ==0 && (enviado|| formNivel.touched)">
+                            Debe seleccionar un Nivel
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <div class="form-group row">
+                    <label class="col-sm-12 col-form-label text-sm-left" style=" font-size: 110%;">
+                        <i class="mdi mdi-drawing-box f-16"></i> N° Ciclo</label>
+                    <div class="col-sm-6">
+                        <input formControlName="ciclo" [(ngModel)]="curso.ciclo" type="number" min="1" max="20" class="form-control" placeholder="Ingrese el Ciclo">
+                        <div class="alert-danger" *ngIf="ciclo.invalid && (ciclo.dirty || ciclo.touched || enviado)">
+                            <div class="container-error-message" *ngIf="ciclo.errors.required">
+                                Ingrese el N° de Ciclo
+                            </div>
+                            <div class="container-error-message" *ngIf="ciclo.errors.min">
+                                Debe ser mínimo 1
+                            </div>
+                            <div class="container-error-message" *ngIf="ciclo.errors.max">
+                                Debe ser máximo 20
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 ">
+            <div class="form-group row">
+                <label class="col-sm-12 col-form-label text-sm-left" style=" font-size: 110%;"> Libro</label>
+                <div class="col-sm-12">
+                    <textarea id="w3mission" rows="5" cols="50" formControlName="libro" [(ngModel)]="curso.libro" class="form-control" placeholder="Ingrese el título del libro">
+                    </textarea>
+                    <div class="alert-danger" *ngIf="libro.invalid && (libro.dirty || libro.touched || enviado)">
+                        <div class="container-error-message" *ngIf="libro.errors.required">
+                            Ingrese título del libro
+                        </div>
+                        <div class="container-error-message" *ngIf="ciclo.errors.min">
+                            Debe ser mínimo 1
+                        </div>
+                        <div class="container-error-message" *ngIf="ciclo.errors.max">
+                            Debe ser máximo 100
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
