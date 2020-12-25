@@ -1,81 +1,84 @@
 package pe.edu.ceid.simi.operative.domain.alumno.model;
 
 public class AlumnoDTO {
+	private String fecha_alta;
 	private String codigo;
 	private String dni;
 	private String nombre;
 	private String idioma;
+	private double nota;
 	private String periodo;
 	private String mes;
-	private String fecha;
-	
+	private String  fecha;
+	public AlumnoDTO(String fecha_alta, String codigo, String dni, String nombre, String idioma, double nota,
+			String periodo, String mes, String fecha) {
+		super();
+		this.fecha_alta = fecha_alta;
+		this.codigo = codigo;
+		this.dni = dni;
+		this.nombre = nombre;
+		this.idioma = idioma;
+		this.nota = nota;
+		this.periodo = periodo;
+		this.mes = mes;
+		this.fecha = fecha;
+	}
+	public String getFecha_alta() {
+		return fecha_alta;
+	}
+	public void setFecha_alta(String fecha_alta) {
+		this.fecha_alta = fecha_alta;
+	}
 	public String getCodigo() {
 		return codigo;
 	}
-
 	public void setCodigo(String codigo) {
 		this.codigo = codigo;
 	}
-
 	public String getDni() {
 		return dni;
 	}
-
 	public void setDni(String dni) {
 		this.dni = dni;
 	}
-
 	public String getNombre() {
 		return nombre;
 	}
-
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-
 	public String getIdioma() {
 		return idioma;
 	}
-
 	public void setIdioma(String idioma) {
 		this.idioma = idioma;
 	}
-
+	public double getNota() {
+		return nota;
+	}
+	public void setNota(double nota) {
+		this.nota = nota;
+	}
 	public String getPeriodo() {
 		return periodo;
 	}
-
 	public void setPeriodo(String periodo) {
 		this.periodo = periodo;
 	}
-
 	public String getMes() {
 		return mes;
 	}
-
 	public void setMes(String mes) {
 		this.mes = mes;
 	}
-
 	public String getFecha() {
 		return fecha;
 	}
-
 	public void setFecha(String fecha) {
 		this.fecha = fecha;
 	}
-
-	public AlumnoDTO(String codigo, String dni, String nombre, String idioma, String periodo, String mes,
-			String fecha) {
-		super();
-		this.codigo = codigo;
-		this.dni = dni;
-		this.nombre = nombre;
-		this.idioma = idioma;
-		this.periodo = periodo;
-		this.mes = mes;
-		this.fecha = fecha;
-	}
+	
+	
 	
 	/*private int idPersona;
 	private String nomPersona;

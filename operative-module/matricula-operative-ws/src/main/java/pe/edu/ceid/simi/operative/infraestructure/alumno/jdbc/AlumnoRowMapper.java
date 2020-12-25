@@ -48,14 +48,16 @@ public class AlumnoRowMapper implements RowMapper{
 }*/
 	@SuppressWarnings("rawtypes")
 	public AlumnoDTO mapRowAlumno(LinkedCaseInsensitiveMap row) {
+		String fecha_alta = row.get("FECHA_ALTA").toString();
 		String codigo = row.get("CODIGO").toString();
 		String dni = row.get("DNI").toString();
 		String nombre = row.get("NOMBRE").toString();
 		String idioma = row.get("IDIOMA").toString();
+		double nota = Double.parseDouble(row.get("PROMEDIO").toString());
 		String periodo = row.get("NOM_PERIODO").toString();
 		String mes = row.get("MES").toString();
 		String fecha = row.get("FECHA_MATRICULA").toString();
-		AlumnoDTO i = new AlumnoDTO(codigo, dni, nombre, idioma, periodo, mes, fecha);
+		AlumnoDTO i = new AlumnoDTO(fecha_alta, codigo, dni, nombre, idioma, nota, periodo, mes, fecha);
 		return i;
 	}
 

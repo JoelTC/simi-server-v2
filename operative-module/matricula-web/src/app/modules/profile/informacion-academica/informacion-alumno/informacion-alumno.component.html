@@ -18,7 +18,7 @@
             <i class="mdi mdi-account" style="font-size: 25px; color: black;"></i>
             SEXO
         </label>
-        <br class="mb-1"/>
+        <br class="mb-1" />
         <label class="simi-input-text form-control">{{user.genero}}</label>
     </div>
 
@@ -27,7 +27,7 @@
             <i class="mdi mdi-account" style="font-size: 25px; color: black;"></i>
             FECHA DE NACIMIENTO (EDAD)
         </label>
-        <br class="mb-1"/>
+        <br class="mb-1" />
         <label class="simi-input-text form-control">{{user.birthday + ' - ' + user.edad + ' años'}}</label>
     </div>
     <div class="mt-3">
@@ -35,7 +35,7 @@
             <i class="mdi mdi-account" style="font-size: 25px; color: black;"></i>
             LUGAR DE NACIMIENTO
         </label>
-        <br class="mb-1"/>
+        <br class="mb-1" />
         <label class="simi-input-text form-control">{{user.lugarNacDep + ' - '+ user.lugarNacProv + ' - ' + user.lugarNacDist}}</label>
     </div>
     <div class="mt-3">
@@ -43,7 +43,7 @@
             <i class="mdi mdi-account" style="font-size: 25px; color: black;"></i>
             DIRECCIÓN
         </label>
-        <br class="mb-1"/>
+        <br class="mb-1" />
         <label class="simi-input-text form-control">{{user.address}}</label>
     </div>
     <div class="mt-3">
@@ -51,7 +51,7 @@
             <i class="mdi mdi-account" style="font-size: 25px; color: black;"></i>
             NACIONALIDAD
         </label>
-        <br class="mb-1"/>
+        <br class="mb-1" />
         <label class="simi-input-text form-control">{{user.nacionalidad}}</label>
     </div>
 </div>
@@ -76,8 +76,8 @@
             <i class="mdi mdi-account" style="font-size: 25px; color: black;"></i>
             FECHA DE REGISTRO
         </label>
-        <br class="mb-1"/>
-        <label class="simi-input-text form-control">2020-02-23</label>
+        <br class="mb-1" />
+        <label class="simi-input-text form-control">{{alumno.fecha_alta}}</label>
     </div>
 
     <div class="mt-3">
@@ -85,31 +85,31 @@
             <i class="mdi mdi-account" style="font-size: 25px; color: black;"></i>
             ÚLTIMO IDIOMA APRENDIDO / NIVEL / CICLO
         </label>
-        <br class="mb-1"/>
-        <label class="simi-input-text form-control">INGLÉS INTERMEDIO V - FRANCÉS BÁSICO I</label>
+        <br class="mb-1" />
+        <label class="simi-input-text form-control">{{alumno.periodo}}</label>
     </div>
     <div class="mt-3">
         <label style="font-size: 13px; color: gray">
             <i class="mdi mdi-account" style="font-size: 25px; color: black;"></i>
             ÚLTIMA NOTA OBTENIDA
         </label>
-        <br class="mb-1"/>
-        <label class="simi-input-text form-control">17</label>
+        <br class="mb-1" />
+        <label class="simi-input-text form-control">{{alumno.nota}} </label>
     </div>
     <div class="mt-3">
         <label style="font-size: 13px; color: gray">
             <i class="mdi mdi-account" style="font-size: 25px; color: black;"></i>
             ÚLTIMA MATRÍCULA
         </label>
-        <br class="mb-1"/>
-        <label class="simi-input-text form-control">2020-2</label>
+        <br class="mb-1" />
+        <label class="simi-input-text form-control">{{alumno.fecha}}</label>
     </div>
     <div class="mt-3">
         <label style="font-size: 13px; color: gray">
             <i class="mdi mdi-account" style="font-size: 25px; color: black;"></i>
            SITUACIÓN ACTUAL
         </label>
-        <br class="mb-1"/>
+        <br class="mb-1" />
         <label class="simi-input-text form-control">ACTIVO</label>
     </div>
 </div>
