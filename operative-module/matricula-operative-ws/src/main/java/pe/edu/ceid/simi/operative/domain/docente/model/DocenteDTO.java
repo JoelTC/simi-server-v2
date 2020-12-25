@@ -8,9 +8,10 @@ public class DocenteDTO {
 	private String apellidoPat;		// idUsuario
 	private String apellidoMat;		// idUsuario
 	private String departamento;
+	private String descripcion;
 	
 	public DocenteDTO(String codDocente, int idUsuario, String nombre, String apellidoPat, String apellidoMat,
-			String departamento) {
+			String departamento, String descripcion) {
 		super();
 		this.codDocente = codDocente;
 		this.idUsuario = idUsuario;
@@ -18,6 +19,7 @@ public class DocenteDTO {
 		this.apellidoPat = apellidoPat;
 		this.apellidoMat = apellidoMat;
 		this.departamento = departamento;
+		this.descripcion = descripcion;
 	}
 
 	public String getCodDocente() {
@@ -67,5 +69,15 @@ public class DocenteDTO {
 	public void setDepartamento(String departamento) {
 		this.departamento = departamento;
 	}
+
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+	
+
 	
 }

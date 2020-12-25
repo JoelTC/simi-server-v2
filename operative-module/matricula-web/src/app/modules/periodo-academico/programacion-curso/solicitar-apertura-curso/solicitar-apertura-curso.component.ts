@@ -67,6 +67,7 @@ export class SolicitarAperturaCursoComponent implements OnInit {
     this.serviceApertura.getApertura().subscribe(data => {
       this.aperturaDTO = data;
       this.getIdioma();
+      console.log(this.aperturaDTO);
 
     }, error => {
       console.log(error);
@@ -77,6 +78,7 @@ export class SolicitarAperturaCursoComponent implements OnInit {
     this.serviceApertura.getAperturabyID(this.serviceData.user.id).subscribe(data => {
       this.aperturaDTO2 = data;
       this.load = false;
+      console.log(this.aperturaDTO2);
 
     }, error => {
       console.log(error);

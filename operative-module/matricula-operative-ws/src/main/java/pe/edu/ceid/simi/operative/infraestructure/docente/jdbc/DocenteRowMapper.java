@@ -29,7 +29,8 @@ public class DocenteRowMapper implements RowMapper {
 			String apellidoPat =row.get("APELLIDO_PAT").toString();
 			String apellidoMat =row.get("APELLIDO_MAT").toString();
 			String departamento = row.get("DEPARTAMENTO").toString();
-			DocenteDTO d = new DocenteDTO(codDocente, idUsuario, nombre, apellidoPat, apellidoMat, departamento);
+			String descripcion = row.get("DESCRIPCION").toString();
+			DocenteDTO d = new DocenteDTO(codDocente, idUsuario, nombre, apellidoPat, apellidoMat, departamento, descripcion);
 			
 			docentes.add(d);
 		}
