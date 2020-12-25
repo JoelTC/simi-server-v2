@@ -4,5 +4,6 @@ export class DocenteDTO {
     nombre: string;
     apellidoPat: string;
     apellidoMat: string;
-    departamento: string
+    departamento: string;
+    descripcion: string;
 }
