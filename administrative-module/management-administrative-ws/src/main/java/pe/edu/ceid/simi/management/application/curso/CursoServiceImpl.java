@@ -68,5 +68,10 @@ public class CursoServiceImpl implements CursoService{
 		// TODO Auto-generated method stub
 		return this.repository.getCursosByIdiomaSedePeriodo(idIdioma, idSede, idPeriodo);
 	}
+	
+	@Override
+	public List<Curso> getCursoByIdiomaNivel (int idioma, int nivel){
+		return this.repository.getCursoByIdiomaNivel(idioma, nivel);
+	}
 
 }

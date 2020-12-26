@@ -8,6 +8,7 @@ import javax.swing.tree.RowMapper;
 import javax.swing.tree.TreePath;
 
 import org.springframework.stereotype.Component;
+import org.springframework.util.LinkedCaseInsensitiveMap;
 
 import pe.edu.ceid.simi.management.domain.nivel.model.Nivel;
 
@@ -31,6 +32,17 @@ public class NivelRowMapper implements RowMapper {
 		}
 		
 		return niveles;
+	}
+	
+	@SuppressWarnings("rawtypes")
+	public Nivel mapRowNiveles(LinkedCaseInsensitiveMap row) {
+
+		int idNivel = Integer.parseInt(row.get("FK_ID_NIVEL").toString());
+		String nomNivel = row.get("NOM_NIVEL").toString();
+
+		Nivel i = new Nivel(idNivel, nomNivel);
+
+		return i;
 	}
 	
 }

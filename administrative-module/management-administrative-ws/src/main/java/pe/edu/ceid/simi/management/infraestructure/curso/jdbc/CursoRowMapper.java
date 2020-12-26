@@ -8,7 +8,9 @@ import javax.swing.tree.RowMapper;
 import javax.swing.tree.TreePath;
 
 import org.springframework.stereotype.Component;
+import org.springframework.util.LinkedCaseInsensitiveMap;
 
+import pe.edu.ceid.simi.management.domain.curso.model.Curso;
 import pe.edu.ceid.simi.management.domain.curso.model.CursoDTO;
 import pe.edu.ceid.simi.management.infraestructure.Tratamiento;
 
@@ -37,6 +39,16 @@ public class CursoRowMapper implements RowMapper {
 			cursos.add(i);
 		}
 		return cursos;
+	}
+	
+	@SuppressWarnings("rawtypes")
+	public Curso mapRowCursos(LinkedCaseInsensitiveMap row) {
+		
+		int idCurso = Integer.parseInt(row.get("ID_CURSO").toString());
+		int ciclo = Integer.parseInt(row.get("CICLO").toString());
+
+		Curso i = new Curso(idCurso, ciclo);
+		return i;
 	}
 
 }

@@ -40,6 +40,9 @@ export class CursoService {
     return this.http.get<CursoDTO[]>(this.url + '/' + 'listCursosByPeriodo'+ '/' + id);
   }
 
+  public getCursobyNivel(idCurso: number, idNivel: number) {
+    return this.http.get<Curso[]>(this.url + '/' + 'listCurso' + '/' + idCurso+ '/'+idNivel);
+  }
 
   
 

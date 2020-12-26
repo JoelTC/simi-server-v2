@@ -1,10 +1,14 @@
 package pe.edu.ceid.simi.management.infraestructure.curso.jdbc;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.simple.SimpleJdbcCall;
 import org.springframework.stereotype.Component;
+import org.springframework.util.LinkedCaseInsensitiveMap;
 
 import pe.edu.ceid.simi.management.domain.curso.model.Curso;
 import pe.edu.ceid.simi.management.domain.curso.model.CursoDTO;
@@ -203,6 +207,21 @@ public class CursoRepositoryImpl implements CursoRepository {
 		List<Map<String, Object>> rows = this.jdbcTemplate.queryForList(query);
 		List<CursoDTO> cursos = row.mapRowCurso(rows);
 		return cursos;
+	}
+	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	@Override
+	public List<Curso> getCursoByIdiomaNivel(int idioma, int nivel) {
+		SimpleJdbcCall jdbcCall = new SimpleJdbcCall(jdbcTemplate).withProcedureName("SP_CURSO_LIST");
+		Map<String, Object> params = new HashMap<>();
+        params.put("P_ID_IDIOMA", idioma);
+        params.put("P_ID_NIVEL", nivel);
+		
+        Map<String, Object> result = jdbcCall.execute(params);
+		 List<Curso> curso= new ArrayList<>();
+		 List<LinkedCaseInsensitiveMap> r = (List<LinkedCaseInsensitiveMap>) result.values().toArray()[0];
+		 r.forEach((v) -> curso.add(row.mapRowCursos(v)));
+		return curso;
 	}
 
 }

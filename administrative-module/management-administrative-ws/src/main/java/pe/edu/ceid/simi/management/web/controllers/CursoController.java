@@ -67,4 +67,9 @@ public class CursoController {
 		return this.service.getCursosByIdiomaSedePeriodo(idIdioma, idSede, idPeriodo);
 	}
 	
+	@GetMapping (path = {"/listCurso/{idIdioma}/{idNivel}"})
+	public List<Curso> getCursobyNivel(@PathVariable("idIdioma") int id1, @PathVariable("idNivel") int id2) {
+		return this.service.getCursoByIdiomaNivel(id1, id2);
+	}
+	
 }

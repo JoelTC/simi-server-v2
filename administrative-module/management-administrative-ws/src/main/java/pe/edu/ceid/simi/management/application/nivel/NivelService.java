@@ -8,4 +8,5 @@ import pe.edu.ceid.simi.management.domain.nivel.model.Nivel;
 public interface NivelService {
 	List<Nivel> getNiveles();
 	Nivel getNivelById(int id);
+	List<Nivel> getNivelByIdioma(int id);
 }

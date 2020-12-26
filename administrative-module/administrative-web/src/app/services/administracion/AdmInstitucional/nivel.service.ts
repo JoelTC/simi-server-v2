@@ -19,6 +19,9 @@ export class NivelService {
     return this.http.get<Nivel>(this.url + '/' + 'obtenerNivelById' + '/' + id);
   }
 
+  public getNivelbyIdioma(id: number) {
+    return this.http.get<Nivel[]>(this.url + '/' + 'listNivelIdioma' + '/' + id);
+  }
   // public editarIdiomaById(idioma: Idioma,id: number) {
   //   return this.http.put<Idioma>(this.url + '/' + 'actualizarIdioma'+ '/' + id, idioma);
   // }

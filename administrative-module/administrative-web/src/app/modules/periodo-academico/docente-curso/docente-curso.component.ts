@@ -13,10 +13,12 @@ import { ProgDocCursoService } from 'src/app/services/periodo-academico/progDocC
 import { ProgDocCursoDTO } from 'src/app/domain/ProgDocCursoDTO';
 import { ProgDocCurso } from 'src/app/domain/ProgDocCurso';
 
+import {NivelService} from 'src/app/services/administracion/AdmInstitucional/nivel.service';
+import { Nivel } from 'src/app/domain/Nivel';
 import { Idioma } from 'src/app/domain/Idioma';
 import { IdiomaService } from 'src/app/services/administracion/AdmInstitucional/idioma.service';
 import { Path } from 'src/app/infrastructure/constans/Path';
-
+import {Curso} from 'src/app/domain/Curso';
 
 @Component({
   selector: 'app-docente-curso',
@@ -31,6 +33,7 @@ export class DocenteCursoComponent implements OnInit {
   docenteUP: DocenteUP;
   docentes: DocenteUP[];
   cursos: CursoDTO[];
+  curso:Curso[];
   periodos: PeriodoAcademico[];
   progDocCursos : ProgDocCursoDTO[];
   progDocCursoDTO : ProgDocCursoDTO;
@@ -43,25 +46,30 @@ export class DocenteCursoComponent implements OnInit {
   public  pageActual : number ;
   nuevoCurso : boolean;
   actualizar : boolean;
+  niveles:Nivel[];
 
   load: boolean;
   loading: string;
   public selectedTypeIdDocente : string;
   public selectedTypeIdPeriodo : number;  
   public selectedTypeIdCurso : number;
+  public selectedTypeIdNivel : number;
+  public selectedTypeIdIdioma: number;
 
    constructor(
      private router: Router  , private docenteUPService: DocenteUPService ,     private cursoService: CursoService , 
      private periodoacademicoService: PeriodoAcademicoService , private progdoccurService: ProgDocCursoService ,
-    private idiomaService : IdiomaService
+    private idiomaService : IdiomaService, private nivelService : NivelService,
     ) {
 
   this.selectedTypeFILTROIdIdioma = -1;
   this.selectedTypeFILTROIdPeriodo = 5;
 
-      this.selectedTypeIdDocente = "";
+      this.selectedTypeIdDocente = "0";
       this.selectedTypeIdPeriodo = 0;
       this.selectedTypeIdCurso = 0;
+      this.selectedTypeIdIdioma = 0;
+      this.selectedTypeIdNivel=0;
      this.estado = false;
      this.docenteUP = new DocenteUP();
      this.pageActual = 1;
@@ -110,6 +118,24 @@ export class DocenteCursoComponent implements OnInit {
     this.idiomaService.getIdiomas().subscribe(data => {
       this.idiomas = data;
       this.load = false;
+      console.log(this.idiomas);
+    });
+  }
+
+  public getNivel(){
+    this.nivelService.getNivelbyIdioma(this.selectedTypeIdIdioma).subscribe(data=>{
+      this.niveles = data;
+      this.load=false;
+      console.log(this.niveles);
+    })
+  }
+
+  public getCurso() {
+    this.cursoService.getCursobyNivel(this.selectedTypeIdIdioma, this.selectedTypeIdNivel).subscribe(data => {
+      this.curso = data;
+      console.log(this.curso);
+    }, error => {
+      console.log(error);
     });
   }
    obtenerProgDocCurso(idPeriodo:number, idIdioma : number) {

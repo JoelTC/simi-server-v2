@@ -25,5 +25,10 @@ public class NivelServiceImpl implements NivelService{
 		// TODO Auto-generated method stub
 		return this.repository.getNivelById(id);
 	}
-
+	
+	@Override
+	public List<Nivel> getNivelByIdioma(int id) {
+		// TODO Auto-generated method stub
+		return this.repository.getNivelByIdioma(id);
+	}
 }

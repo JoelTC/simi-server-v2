@@ -14,4 +14,5 @@ public interface CursoRepository {
 	List<CursoDTO> getCursosByPeriodo(int idPeriodo);
 	List<CursoDTO> getCursosByIdiomaSedePeriodo(int idIdioma, int idSede, int idPeriodo);
 	CursoDTO getCursoById(int id);
+	List<Curso> getCursoByIdiomaNivel(int idioma, int nivel);
 }
