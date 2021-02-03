@@ -1,5 +1,5 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
-import *as jsPDF from 'jspdf';
+import * as jsPDF from 'jspdf';
 
 @Component({
   selector: 'app-reportes-institucionales',
@@ -18,15 +18,14 @@ export class ReportesInstitucionalesComponent implements OnInit {
       '#editor':function(element,renderer){
         return true;
       }
-};
+    };
 
-let content =this.content.nativeElement;
-doc.fromHTML(content.innerHTML,80,80,{
-  'width':522,
-  
-  'elementHandlers':specialElementHandlers
-});
-doc.save('test.pdf');
+    let content =this.content.nativeElement;
+    doc.fromHTML(content.innerHTML,80,80,{
+      'width':522,
+      
+      'elementHandlers':specialElementHandlers
+    });
+    doc.save('REPORT.pdf');
   }
-
 }
