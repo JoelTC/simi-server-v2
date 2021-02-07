@@ -22,8 +22,8 @@ export class MainComponent implements OnInit {
 
   private setDatos() {
     this.setDatosJson(
-      'Matriculados Febrero 2020',
-      250,
+      'Matriculados Febrero 2021',
+      100,
       'Cantidad de matriculados en el presente Ciclo Académico.',
       'Matricula',
       'mdi-book-variant-multiple'
